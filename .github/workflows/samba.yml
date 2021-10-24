@@ -1,0 +1,48 @@
+# 此工作流使用未经 GitHub 认证的操作。
+# 它们由第三方提供，并受
+# 单独的服务条款、隐私政策和支持
+# 文档管理。
+
+name: samba-build
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '30 11 * * *'
+
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    # 配置 git
+      - name: config git
+        run: git config --global user.email "qwe7951384261@outlook.com"&&git config --global user.name "fyn5908"
+      
+    # 使用脚本提交和推送
+      - name: run sc    # 或者使用 git 命令
+      - name: run script
+        run: |
+           git clone https://mirrors.bfsu.edu.cn/git/gentoo-portage.git
+           cp -rf gentoo-portage/net-fs/samba ./net-fs
+           rm -rf gentoo-portage
+           sed -i 's/libunwind/llvm-libunwind/g' net-fs/samba/samba
+      - name: check for changes
+        run: git status
+      - name: stage changed files
+        run: git add .
+      - name: commit changed files
+        run: git commit -m "update by github actions"
+      - name: push code to master
+        run: git push origin master
+
