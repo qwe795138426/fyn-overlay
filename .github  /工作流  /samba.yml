@@ -34,9 +34,9 @@ jobs:
       - name: run script
         run: |
            git clone https://mirrors.bfsu.edu.cn/git/gentoo-portage.git
-           cp -rf gentoo-portage/net-fs/samba ./net-fs
+           cp -rf gentoo-portage/net-fs/samba ./net-fs/samba
            rm -rf gentoo-portage
-           sed -i 's/libunwind/llvm-libunwind/g' net-fs/samba/samba
+           sed -i 's/libunwind/llvm-libunwind/g' net-fs/samba/samba-*
       - name: check for changes
         run: git status
       - name: stage changed files
