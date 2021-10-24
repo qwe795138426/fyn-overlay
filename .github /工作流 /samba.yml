@@ -30,7 +30,7 @@ jobs:
         run: git config --global user.email "qwe7951384261@outlook.com"&&git config --global user.name "fyn5908"
       
     # 使用脚本提交和推送
-      - name: run sc    # 或者使用 git 命令
+    # 或者使用 git 命令
       - name: run script
         run: |
            git clone https://mirrors.bfsu.edu.cn/git/gentoo-portage.git
