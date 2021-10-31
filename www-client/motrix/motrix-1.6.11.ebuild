@@ -22,6 +22,10 @@ RDEPEND="${DEPEND}"
 
 BDEPEND=""
 
+QA_PRESTRIPPED="
+	/opt/${PN}/.*/.*/.*
+"
+
 pkg_nofetch() {
 	elog "The following files cannot be fetched for ${P}:"
 	einfo "motrix-1.6.11.tar.gz"
@@ -38,18 +42,16 @@ src_unpack() {
 	cp ./* motrix-1.6.11
 }
 
-src_compile() {
-	true
-}
-
-src_test() {
-	true
-}
 
 src_install() {
-	cp -rf ./* /opt/motrix
-	ls /opt/motrix/motrix /usr/bin/motrix
+	local dir="/opt/${PN}"
+
+	insinto "${dir}"
+
+	fperms 0755 "${dir}/motrix"
+	fperms 4755 "${dir}/chrome-sandbox"
 }
+
 
 pkg_postinst() {
 	elog "Motrix may need to run with sudo for the first time in Linux"
