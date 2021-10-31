@@ -34,10 +34,8 @@ src_unpack() {
 	if [[ -n ${A} ]]; then
 		unpack ${A}
 	fi
-}
-
-src_prepare() {
-	true
+	mkdir motrix-1.6.11
+	cp ./* motrix-1.6.11
 }
 
 src_compile() {
