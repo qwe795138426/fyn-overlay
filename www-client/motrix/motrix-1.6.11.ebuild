@@ -38,8 +38,8 @@ src_unpack() {
 	if [[ -n ${A} ]]; then
 		unpack ${A}
 	fi
-	mkdir motrix-1.6.11
-	cp ./* motrix-1.6.11
+	mv Motrix-1.6.11  motrix-1.6.11
+	S=${WORKDIR}
 }
 
 
