@@ -54,7 +54,7 @@ pkg_setup() {
                     export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
         fi
     fi
-	ls
+	ls ./
 	mv motrix-${PV}.package.json ${HOME}/package.json
 	mv motrix-${PV}.yarn.lock ${HOME}/yarn.lock
 	cd ${HOME}
