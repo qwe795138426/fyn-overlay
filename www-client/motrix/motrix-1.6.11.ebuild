@@ -39,7 +39,7 @@ src_unpack() {
 		unpack ${A}
 	fi
 	mv Motrix-1.6.11  motrix-1.6.11
-	S=${WORKDIR}
+	S=${WORKDIR}/motrix-1.6.11
 }
 
 
