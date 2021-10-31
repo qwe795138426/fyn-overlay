@@ -5,7 +5,9 @@ EAPI=8
 
 DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
-SRC_URI="https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz -> motrix-1.6.11.tar.gz"
+SRC_URI="https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz -> motrix-1.6.11.tar.gz"
+
+RESRICT="mirror"
 
 LICENSE="MIT"
 SLOT="0"
