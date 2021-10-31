@@ -26,15 +26,7 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 BDEPEND=""
-
-pkg_nofetch() {
-	elog "The following files cannot be fetched for ${P}:"
-	einfo "motrix-1.6.11.tar.gz"
-	einfo "Please download"
-	einfo "from https://github.com/agalwood/Motrix/releases and place them in ${DISTDIR}"
-}
-
-pkg_setup() {
+pkg_pretend()  {
 	curl https://myip.ipip.net | grep -i "中国"
 	if [ $? -eq 0 ]
     then
@@ -54,12 +46,19 @@ pkg_setup() {
                     export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
         fi
     fi
-	ls ./
-	mv motrix-${PV}.package.json ${HOME}/package.json
-	mv motrix-${PV}.yarn.lock ${HOME}/yarn.lock
+	mv ${DISTDIR}/motrix-${PV}.package.json ${HOME}/package.json
+	mv ${DISTDIR}motrix-${PV}.yarn.lock ${HOME}/yarn.lock
 	cd ${HOME}
 	yarn
 }
+
+pkg_nofetch() {
+	elog "The following files cannot be fetched for ${P}:"
+	einfo "motrix-1.6.11.tar.gz"
+	einfo "Please download"
+	einfo "from https://github.com/agalwood/Motrix/releases and place them in ${DISTDIR}"
+}
+
 
 src_unpack() {
 	if [[ -n ${A} ]]; then
