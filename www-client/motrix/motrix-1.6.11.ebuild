@@ -3,7 +3,7 @@
 
 EAPI=8
 
-DESCRIPTION="Motrix is a full-featured download manager that supports downloading HTTP, FTP, BitTorrent, Magnet, etc."
+DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
 SRC_URI="https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz"
 
