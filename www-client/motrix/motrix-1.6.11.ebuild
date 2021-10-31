@@ -5,7 +5,9 @@ EAPI=8
 
 DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
-SRC_URI="https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz -> motrix-1.6.11.tar.gz"
+SRC_URI="https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz -> motrix-1.6.11.tar.gz
+https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/agalwood/Motrix/blob/master/package.json -> motrix-1.6.11.package.json
+https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/agalwood/Motrix/blob/master/yarn.lock -> motrix-1.6.11.yarn.lock"
 
 RESRICT="mirror"
 
@@ -33,17 +35,6 @@ pkg_nofetch() {
 }
 
 pkg_setup() {
-	ture
-}
-
-src_unpack() {
-	if [[ -n ${A} ]]; then
-		unpack ${A}
-	fi
-	mv Motrix-${PV} motrix-${PV}
-}
-src_compile() {
-	cd ${WORKDIR}/motrix-${PV}
 	curl https://myip.ipip.net | grep -i "中国"
 	if [ $? -eq 0 ]
     then
@@ -63,6 +54,20 @@ src_compile() {
                     export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
         fi
     fi
+	cp -rf ${DISTDIR}/motrix-1.6.11.package.json ${HOME}/package.json
+	cp -rf ${DISTDIR}/motrix-1.6.11.yarn.lock ${HOME}/yarn.lock
+	cd ${HOME}
+	yarn
+}
+
+src_unpack() {
+	if [[ -n ${A} ]]; then
+		unpack ${A}
+	fi
+	mv Motrix-${PV} motrix-${PV}
+}
+src_compile() {
+	cd ${WORKDIR}/motrix-${PV}
 	yarn && npm run build:dir
 }
 
