@@ -61,7 +61,7 @@ src_unpack() {
 	mv Motrix-${PV} motrix-${PV}
 }
 src_compile() {
-	cd ${WORKDIR}
+	cd ${WORKDIR}/motrix-${PV}
 	yarn && npm run build:dir
 }
 
