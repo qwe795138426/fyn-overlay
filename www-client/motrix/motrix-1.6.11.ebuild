@@ -54,8 +54,12 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	true
+}
 
 src_compile() {
+	cd ${WORKDIR}
 	yarn && npm run build:dir
 }
 
