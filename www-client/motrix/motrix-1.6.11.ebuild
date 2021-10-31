@@ -35,8 +35,17 @@ src_unpack() {
 		unpack ${A}
 	fi
 }
+
+src_prepare() {
+	true
+}
+
 src_compile() {
-	ture
+	true
+}
+
+src_test() {
+	true
 }
 
 src_install() {
