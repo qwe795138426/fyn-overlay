@@ -54,10 +54,12 @@ pkg_setup() {
 	fi
 }
 
-src_prepare() {
-	true
+src_unpack() {
+	if [[ -n ${A} ]]; then
+		unpack ${A}
+	fi
+	cp -rf Motrix-* motrix-*
 }
-
 src_compile() {
 	cd ${WORKDIR}
 	yarn && npm run build:dir
