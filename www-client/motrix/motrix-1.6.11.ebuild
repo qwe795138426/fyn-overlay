@@ -33,25 +33,7 @@ pkg_nofetch() {
 }
 
 pkg_setup() {
-	curl https://myip.ipip.net | grep -i "中国"
-	if [ $? -eq 0 ]
-	then
-		echo "Yes,I'm sure you are in China."
-		echo "To speed up installation I'll change npm mirrors to Taobao."
-		npm config set registry 'https://registry.npm.taobao.org'
-		export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
-		export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
-	else
-		curl https://myip.ipip.net | grep -i "China"
-		if [ $? -eq 0 ]
-		then
-			echo "Yes,I'm sure you are in China."
-			echo "To speed up installation I'll change npm mirrors to Taobao."
-                	npm config set registry 'https://registry.npm.taobao.org'
-                	export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
-                	export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
-		fi
-	fi
+	ture
 }
 
 src_unpack() {
@@ -62,6 +44,25 @@ src_unpack() {
 }
 src_compile() {
 	cd ${WORKDIR}/motrix-${PV}
+	curl https://myip.ipip.net | grep -i "中国"
+	if [ $? -eq 0 ]
+    then
+        echo "Yes,I'm sure you are in China."
+        echo "To speed up installation I'll change npm mirrors to Taobao."
+        npm config set registry 'https://registry.npm.taobao.org'
+        export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
+        export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
+    else
+        curl https://myip.ipip.net | grep -i "China"
+        if [ $? -eq 0 ]
+        then
+            echo "Yes,I'm sure you are in China."
+            echo "To speed up installation I'll change npm mirrors to Taobao."
+                    npm config set registry 'https://registry.npm.taobao.org'
+                    export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
+                    export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
+        fi
+    fi
 	yarn && npm run build:dir
 }
 
