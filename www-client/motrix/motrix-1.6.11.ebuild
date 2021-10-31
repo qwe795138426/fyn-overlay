@@ -38,7 +38,7 @@ src_unpack() {
 	if [[ -n ${A} ]]; then
 		unpack ${A}
 	fi
-	mv Motrix-1.6.11  motrix-1.6.11
+	mv Motrix-1.6.11/linux-unpacked motrix-1.6.11
 	S=${WORKDIR}/motrix-1.6.11
 }
 
