@@ -5,23 +5,27 @@ EAPI=8
 
 DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
-SRC_URI="https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz"
+SRC_URI="https://github.com/agalwood/Motrix/archive/refs/tags/v1.6.11.tar.gz -> motrix-1.6.11.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
-DEPEND="sys-apps/yarn
-net-libs/nodejs
-net-misc/curl
-x11-libs/gtk+:3
-x11-libs/libxcb"
+DEPEND="
+	sys-apps/yarn
+	net-libs/nodejs
+	net-misc/curl
+	x11-libs/gtk+:3
+	x11-libs/libxcb
+	"
+
 RDEPEND="${DEPEND}"
+
 BDEPEND=""
 
 pkg_nofetch() {
 	elog "The following files cannot be fetched for ${P}:"
-	einfo "v.1.6.11.tar.bz2"
+	einfo "motrix-1.6.11.tar.gz"
 	einfo "Please download"
 	einfo "from https://github.com/agalwood/Motrix/releases and place them in ${DISTDIR}"
 }
