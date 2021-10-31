@@ -65,4 +65,4 @@ pkg_postinst() {
 	elog "Motrix may need to run with sudo for the first time in Linux"
 	elog "because there is no permission to create the download the session"
 	elog "file (/var/cache/aria2.session)"
-release/linux-unpacked}
+}
