@@ -58,7 +58,7 @@ src_unpack() {
 	if [[ -n ${A} ]]; then
 		unpack ${A}
 	fi
-	mv -rf Motrix-${PV} motrix-${PV}
+	mv Motrix-${PV} motrix-${PV}
 }
 src_compile() {
 	cd ${WORKDIR}
