@@ -44,12 +44,10 @@ src_unpack() {
 
 
 src_install() {
-	local dir="/opt/${PN}"
+	insinto /opt/${PN}
+	dobin motrix
+	doins -r .*
 
-	insinto "${dir}"
-
-	fperms 0755 "${dir}/motrix"
-	fperms 4755 "${dir}/chrome-sandbox"
 }
 
 
