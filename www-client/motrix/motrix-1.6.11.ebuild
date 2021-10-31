@@ -38,7 +38,7 @@ pkg_setup() {
 	then
 		echo "Yes,I'm sure you are in China."
 		echo "To speed up installation I'll change npm mirrors to Taobao."
-		npm config set registry 'https://registry.npm.taobao.org'
+		/usr/lib64/node_modules/npm config set registry 'https://registry.npm.taobao.org'
 		export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
 		export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
 	else
@@ -47,7 +47,7 @@ pkg_setup() {
 		then
 			echo "Yes,I'm sure you are in China."
 			echo "To speed up installation I'll change npm mirrors to Taobao."
-                	npm config set registry 'https://registry.npm.taobao.org'
+                	/usr/lib64/node_modules/npm config set registry 'https://registry.npm.taobao.org'
                 	export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
                 	export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
 		fi
@@ -62,7 +62,7 @@ src_unpack() {
 }
 src_compile() {
 	cd ${WORKDIR}
-	yarn && npm run build:dir
+	/usr/bin/yarn && /usr/lib64/node_modules/npm run build:dir
 }
 
 src_install() {
