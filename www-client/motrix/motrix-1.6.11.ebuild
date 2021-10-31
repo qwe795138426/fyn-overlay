@@ -44,8 +44,8 @@ src_unpack() {
 
 
 src_install() {
-	insinto /opt/${PN}
 	dobin motrix
+	insinto /opt/${PN}
 	doins -r .*
 
 }
