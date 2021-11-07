@@ -47,7 +47,7 @@ src_install() {
 	cp -a opt/Motrix "${ED}"/opt || die
 	dobin opt/Motrix/motrix
 	dodir /usr
-	cp -a usr /usr || die
+	cp -a usr/* /usr || die
 		local res
 	for res in 16 32 256 512 1024; do
 		newicon -s ${res} usr/share/icons/hicolor/${res}x${res}/apps/motrix.png motrix.png
