@@ -3,9 +3,11 @@
 
 EAPI=8
 
+inherit rpm
+
 DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
-SRC_URI="https://github.rc1844.workers.dev/qwe795138426/fyn-mirror/blob/main/www-client/motrix/motrix-1.6.11.tar.gz -> motrix-1.6.11.tar.gz"
+SRC_URI="https://github.rc1844.workers.dev/agalwood/Motrix/releases/download/v${PV}/Motrix-${PV}.x86_64.rpm -> motrix-${PV}.rpm"
 
 RESRICT="mirror"
 
@@ -28,19 +30,12 @@ QA_PRESTRIPPED="
 
 pkg_nofetch() {
 	elog "The following files cannot be fetched for ${P}:"
-	einfo "motrix-1.6.11.tar.gz"
+	einfo "motrix-${PV}.rpm"
 	einfo "Please download"
 	einfo "from https://github.com/agalwood/Motrix/releases and place them in ${DISTDIR}"
 }
 
 
-src_unpack() {
-	if [[ -n ${A} ]]; then
-		unpack ${A}
-	fi
-	mv Motrix-1.6.11/linux-unpacked motrix-1.6.11
-	S=${WORKDIR}/motrix-1.6.11
-}
 
 
 src_install() {
