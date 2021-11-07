@@ -45,7 +45,6 @@ pkg_nofetch() {
 src_install() {
 	dodir "${ED}"/opt
 	cp -a opt/Motrix "${ED}"/opt || die
-	rm "${ED}"/opt/Motrix/chrome-sandbox || die
 	dobin usr/bin/motrix
 	dodir /usr
 	cp -a usr /usr || die
