@@ -49,7 +49,7 @@ src_install() {
 	dodir "${ED}"/usr
 	cp -a usr/* "${ED}"/usr || die
 	local res
-	for res in 16 32 256 512 1024; do
+	for res in 16 32 256 512; do
 		doicon -s ${res} usr/share/icons/hicolor/${res}x${res}/apps/motrix.png
 	done
 
