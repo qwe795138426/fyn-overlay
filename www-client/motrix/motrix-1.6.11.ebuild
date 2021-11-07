@@ -43,10 +43,10 @@ pkg_nofetch() {
 
 
 src_install() {
-	dodir "${ED}"/opt
+	dodir /opt
 	cp -a opt/Motrix "${ED}"/opt || die
 	dobin opt/Motrix/motrix
-	dodir "${ED}"/usr
+	dodir /usr
 	cp -a usr/* "${ED}"/usr || die
 	local res
 	for res in 16 32 256 512; do
