@@ -28,6 +28,7 @@ QA_PREBUILT="*"
 
 src_unpack() {
 	rpm_src_unpack ${A}
+	mkdir motrix-${PV}
 }
 
 
