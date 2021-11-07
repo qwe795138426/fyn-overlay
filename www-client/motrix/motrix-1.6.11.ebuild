@@ -24,9 +24,12 @@ RDEPEND="${DEPEND}"
 
 BDEPEND=""
 
-QA_PRESTRIPPED="
-	/opt/${PN}/.*/.*/.*
-"
+QA_PREBUILT="*"
+
+src_unpack() {
+	rpm_src_unpack ${A}
+}
+
 
 pkg_nofetch() {
 	elog "The following files cannot be fetched for ${P}:"
@@ -39,8 +42,11 @@ pkg_nofetch() {
 
 
 src_install() {
-	dobin motrix
-	insinto /opt/${PN}
+	dodir /opt
+	cp -a opt/Motrix /opt/Motrix || die
+	dobin usr/bin/motrix
+	dodir /usr
+	cp -a usr /usr || die
 	doins -r .*
 
 }
