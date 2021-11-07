@@ -45,7 +45,7 @@ pkg_nofetch() {
 src_install() {
 	dodir "${ED}"/opt
 	cp -a opt/Motrix "${ED}"/opt || die
-	dobin usr/bin/motrix
+	dobin opt/Motrix/motrix
 	dodir /usr
 	cp -a usr /usr || die
 		local res
