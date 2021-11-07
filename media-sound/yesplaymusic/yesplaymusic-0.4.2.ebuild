@@ -30,8 +30,8 @@ src_unpack() {
 
 src_install() {
 	dodir /opt
-	cp -a opt/yesplaymusic "${ED}"/opt || die
-	dobin opt/yesplaymusic/yesplaymusic
+	cp -a opt/YesPlayMusic "${ED}"/opt || die
+	dobin opt/YesPlayMusic/yesplaymusic
 	dodir /usr
 	cp -a usr/* "${ED}"/usr || die
 	local res
