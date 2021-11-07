@@ -44,11 +44,15 @@ pkg_nofetch() {
 src_install() {
 	dodir /opt
 	cp -a opt/Motrix /opt/Motrix || die
+	rm /opt/Motrix/chrome-sandbox || die
 	dobin usr/bin/motrix
 	dodir /usr
 	cp -a usr /usr || die
-	doins -r .*
-
+		local res
+	for res in 16 32 256 512 1024; do
+		newicon -s ${res} usr/share/icons/hicolor/${res}x${res}/apps/motrix.png motrix.png
+	done
+	domenu usr/share/applications/motrix.desktop
 }
 
 
