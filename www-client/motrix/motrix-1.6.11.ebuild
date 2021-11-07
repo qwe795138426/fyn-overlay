@@ -10,6 +10,7 @@ HOMEPAGE="https://motrix.app/"
 SRC_URI="https://github.rc1844.workers.dev/agalwood/Motrix/releases/download/v${PV}/Motrix-${PV}.x86_64.rpm -> motrix-${PV}.rpm"
 
 RESRICT="mirror"
+S="${WORKDIR}"
 
 LICENSE="MIT"
 SLOT="0"
@@ -28,7 +29,6 @@ QA_PREBUILT="*"
 
 src_unpack() {
 	rpm_src_unpack ${A}
-	mkdir motrix-${PV}
 }
 
 
