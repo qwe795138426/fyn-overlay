@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit rpm
+inherit rpm desktop
 
 DESCRIPTION="Motrix is a full-featured download manager"
 HOMEPAGE="https://motrix.app/"
