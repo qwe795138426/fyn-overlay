@@ -30,7 +30,8 @@ src_install() {
 	doins -r *
 	fperms 4711 /opt/${PN}/chrome-sandbox
 	fperms 755 /opt/${PN}/*.sh
-	dosym "../../opt/${PN}/bin/trilium" "usr/bin/trilium"
+	fperms -R +x /opt/${PN}/trilium
+	dosym "../../opt/${PN}/trilium" "usr/bin/trilium"
 	domenu "${FILESDIR}/trilium.desktop"
 	newicon "icon.png" "trilium.png"
 }
