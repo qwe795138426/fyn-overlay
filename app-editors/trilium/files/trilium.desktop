@@ -2,7 +2,7 @@
 Name=Trilium Notes
 Comment=Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.
 GenericName=Note taker
-Exec=/opt/trilium/teilium %U
+Exec=teilium %U
 Icon=trilium
 Type=Application
 StartupNotify=true

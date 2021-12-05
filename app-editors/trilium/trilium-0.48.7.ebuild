@@ -26,15 +26,10 @@ S="${WORKDIR}/trilium-linux-x64"
 
 src_install() {
 	pax-mark m trilium
-	insinto "/opt/${PN}"
-	doins -r *
-	newicon "icon.png" "trilium.png"
 	domenu "${FILESDIR}/trilium.desktop"
-	fperms +x /opt/${PN}/trilium
-	fperms 4711 /opt/${PN}/chrome-sandbox
-	fperms 755 /opt/${PN}/trilium-safe-mode.sh
-	fperms 755 /opt/${PN}/trilium-portable.sh
-	fperms 755 /opt/${PN}/trilium-no-cert-check.sh
+	newicon "icon.png" "trilium.png"
+	cp -a  ${WORKDIR}/trilium-linux-x64/* "${ED}"/opt/trilium
+	dobin trilium
 }
 
 pkg_postinst() {
