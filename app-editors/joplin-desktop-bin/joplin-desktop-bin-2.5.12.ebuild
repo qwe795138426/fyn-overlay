@@ -22,6 +22,13 @@ QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
+src_unpack() {
+	if [[ -n ${A} ]]; then
+		mv ${A} ${WORKDIR}
+	fi
+}
+
+
 src_configure() {
 	chmod +x Joplin-${PV}.AppImage
 }
