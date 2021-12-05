@@ -23,9 +23,7 @@ QA_PREBUILT="*"
 S="${WORKDIR}"
 
 src_unpack() {
-	if [[ -n ${A} ]]; then
-		mv ${A} ${WORKDIR}
-	fi
+		cp -r ${A} ${WORKDIR}
 }
 
 
