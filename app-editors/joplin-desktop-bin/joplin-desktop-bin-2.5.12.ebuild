@@ -22,10 +22,6 @@ QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
-src_unpack() {
-	return
-}
-
 src_configure() {
 	chmod +x Joplin-${PV}.AppImage
 }
