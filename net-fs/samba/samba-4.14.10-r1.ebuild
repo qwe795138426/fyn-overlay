@@ -16,7 +16,7 @@ if [[ ${PV} = *_rc* ]]; then
 	SRC_URI="mirror://samba/rc/${MY_P}.tar.gz"
 else
 	SRC_URI="mirror://samba/stable/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~sparc ~x86"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~riscv sparc x86"
 fi
 S="${WORKDIR}/${MY_P}"
 
@@ -68,7 +68,7 @@ COMMON_DEPEND="
 	>=net-libs/gnutls-3.4.7[${MULTILIB_USEDEP}]
 	net-libs/libnsl:=[${MULTILIB_USEDEP}]
 	sys-libs/e2fsprogs-libs[${MULTILIB_USEDEP}]
-	>=sys-libs/ldb-2.3.0[ldap(+)?,${MULTILIB_USEDEP}]
+	>=sys-libs/ldb-2.3.2[ldap(+)?,${MULTILIB_USEDEP}]
 	<sys-libs/ldb-2.4.0[ldap(+)?,${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	sys-libs/liburing:=[${MULTILIB_USEDEP}]
@@ -90,7 +90,7 @@ COMMON_DEPEND="
 			net-dns/bind-tools[gssapi]
 		)
 	")
-	!alpha? ( !sparc? ( sys-libs/llvm-llvm-llvm-llvm-llvm-llvm-llvm-libunwind:= ) )
+	!alpha? ( !sparc? ( sys-libs/llvm-libunwind:= ) )
 	acl? ( virtual/acl )
 	ceph? ( sys-cluster/ceph )
 	cluster? ( net-libs/rpcsvc-proto )
@@ -144,6 +144,9 @@ BDEPEND="${PYTHON_DEPS}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4.4.0-pam.patch"
+
+	# https://bugs.gentoo.org/828063
+	"${FILESDIR}/${P}-winbindd_regression_fix.patch"
 )
 
 #CONFDIR="${FILESDIR}/$(get_version_component_range 1-2)"
@@ -274,7 +277,8 @@ multilib_src_install() {
 
 		# create symlink for cups (bug #552310)
 		if use cups ; then
-			dosym ../../../bin/smbspool /usr/libexec/cups/backend/smb
+			dosym ../../../bin/smbspool \
+				/usr/libexec/cups/backend/smb
 		fi
 
 		# install example config file
@@ -295,7 +299,10 @@ multilib_src_install() {
 		newconfd "${CONFDIR}/samba4.confd" samba
 
 		dotmpfiles "${FILESDIR}"/samba.conf
-		use addc || rm "${D}/$(systemd_get_systemunitdir)/samba.service" || die
+		if ! use addc ; then
+			rm "${D}/$(systemd_get_systemunitdir)/samba.service" \
+				|| die
+		fi
 
 		# Preserve functionality for old gentoo-specific unit names
 		dosym nmb.service "$(systemd_get_systemunitdir)/nmbd.service"
