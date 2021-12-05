@@ -26,9 +26,10 @@ S="${WORKDIR}/trilium-linux-x64"
 
 src_install() {
 	pax-mark m trilium
+	insinto "/opt/${PN}"
+	doins -r *
 	domenu "${FILESDIR}/trilium.desktop"
 	newicon "icon.png" "trilium.png"
-	cp -a  ${WORKDIR}/trilium-linux-x64/* "${ED}"/opt/trilium
 	dobin trilium
 }
 
