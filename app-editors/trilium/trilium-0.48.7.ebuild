@@ -28,9 +28,11 @@ src_install() {
 	pax-mark m trilium
 	insinto "/opt/${PN}"
 	doins -r *
+	fperms 4711 /opt/${PN}/chrome-sandbox
+	fperms 755 /opt/${PN}/*.sh
+	dosym "../../opt/${PN}/bin/trilium" "usr/bin/trilium"
 	domenu "${FILESDIR}/trilium.desktop"
 	newicon "icon.png" "trilium.png"
-	dobin trilium
 }
 
 pkg_postinst() {
