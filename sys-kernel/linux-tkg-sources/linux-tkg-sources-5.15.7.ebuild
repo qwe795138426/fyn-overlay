@@ -53,24 +53,6 @@ SRC_URI="${KERNEL_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0012-misc-additions.patch -> 0012-misc-additions-${PV}.patch
 "
 
-PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch"
-		"${DISTDIR}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch"
-		"${DISTDIR}/0002-clear-patches-${PV}.patch"
-		"${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
-		"${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
-		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
-		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
-		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
-		"${DISTDIR}/0012-misc-additions-${PV}.patch"
-		"${DISTDIR}/0003-glitched-base-${PV}.patch"
-		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
-		"${DISTDIR}/le9ec-${SHPV}-MGLRU-${PV}.patch"
-		"${DISTDIR}/lru_${SHPV}.patch"
-		"${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
-		"${DISTDIR}/${SHPV}-bfq-lucjan-r2K211210v1.patch"
-		"${DISTDIR}/0001-btrfs-patches.patch"
-		"${DISTDIR}/0001-futex-resync-from-gitlab.collabora.com.patch"
-		"${DISTDIR}/0001-pf-patches.patch")
 
 pkg_setup() {
 	ewarn ""
@@ -87,6 +69,24 @@ src_prepare() {
 	kernel-2_src_prepare
 	eapply ${PATCHES}
 	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
+	eapply "${DISTDIR}/0001-pf-patches.patch"
+	eapply "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch"
+	eapply "${DISTDIR}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch"
+	eapply "${DISTDIR}/0002-clear-patches-${PV}.patch"
+	eapply "${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
+	eapply "${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
+	eapply "${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
+	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
+	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
+	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
+	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
+	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
+	eapply "${DISTDIR}/le9ec-${SHPV}-MGLRU-${PV}.patch"
+	eapply "${DISTDIR}/lru_${SHPV}.patch"
+	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
+	eapply "${DISTDIR}/${SHPV}-bfq-lucjan-r2K211210v1.patch"
+	eapply "${DISTDIR}/0001-btrfs-patches.patch"
+	eapply "${DISTDIR}/0001-futex-resync-from-gitlab.collabora.com.patch"
 	eapply "${DISTDIR}/0001-pf-patches.patch"
 	if use cfs; then
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
