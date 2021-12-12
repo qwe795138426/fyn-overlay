@@ -69,7 +69,7 @@ src_prepare() {
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
-	eapply "${DISTDIR}/ 0012-misc-additions-${PV}.patch"
+	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-futex_waitv-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv.patch"
 	if use bmq; then
