@@ -49,7 +49,6 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch"
 		"${DISTDIR}/0002-clear-patches-${PV}.patch"
 		"${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
-		"${DISTDIR}/0003-glitched-base-${PV}.patch"
 		"${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
 		#"${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch"
@@ -68,7 +67,8 @@ pkg_setup() {
 	if use cfs; then
 		PATCHES=(${PATCHES} 
 				"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-				"${DISTDIR}/0003-glitched-cfs-${PV}.patch")
+				"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+				"${DISTDIR}/0003-glitched-base-${PV}.patch")
 	fi
 	if use bmq; then
 		PATCHES=(${PATCHES} 
