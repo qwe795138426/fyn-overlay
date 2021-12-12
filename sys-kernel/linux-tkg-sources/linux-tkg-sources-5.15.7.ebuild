@@ -72,21 +72,20 @@ pkg_setup() {
 				"${DISTDIR}/0003-glitched-base-${PV}.patch")
 	fi
 	if use bmq; then
-		PATCHES=( ${PATCHES}
+		PATCHES+=( ${PATCHES}
 				"${DISTDIR}/0009-glitched-bmq-${PV}.patch"
 				"${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch")
 	fi
 	if use pds; then
-		PATCHES=( ${PATCHES}
+		PATCHES+=( ${PATCHES}
 				"${DISTDIR}/0005-glitched-pds-${PV}.patch")
 	fi
 	if use bcachefs; then
-		PATCHES=( ${PATCHES}
+		PATCHES+=( ${PATCHES}
 				"${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch")
 	fi
 	if use cjktty; then
-		PATCHES=( ${PATCHES}
-				"${DISTDIR}/v1-cjktty-${SHPV}.patch")
+		PATCHES+=( "${DISTDIR}/v1-cjktty-${SHPV}.patch")
 	fi
 	kernel-2_pkg_setup
 }
