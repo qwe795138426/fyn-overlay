@@ -71,15 +71,17 @@ pkg_setup() {
 src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
 	if use cfs; then
-		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
 	fi
 	if use bmq; then
+		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 		eapply "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
 		eapply "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
 	fi
 	if use pds; then
+		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 		eapply "${DISTDIR}/0005-glitched-pds-${PV}.patch"
 	fi
 	if use bcachefs; then
