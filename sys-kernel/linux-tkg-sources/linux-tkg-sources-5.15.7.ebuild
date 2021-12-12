@@ -18,9 +18,10 @@ SHPV="${KV_MAJOR}.${KV_MINOR}"
 
 KEYWORDS="~amd64"
 
-IUSE+="bmq pds bcachefs"
+IUSE+="bmq pds cfs bcachefs"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
+REQUIRED_USE="^^ (bmq pds cfs)"
 
 SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
@@ -49,8 +50,6 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/0002-clear-patches-${PV}.patch"
 		"${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
 		"${DISTDIR}/0003-glitched-base-${PV}.patch"
-		"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-		"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		"${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
 		#"${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch"
@@ -66,6 +65,11 @@ pkg_setup() {
 	ewarn "Do *not* open bugs in Gentoo's bugzilla unless you have issues with"
 	ewarn "the ebuilds. Thank you."
 	ewarn ""
+	if use cfs; then
+		PATCHES=(${PATCHES} 
+				"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
+				"${DISTDIR}/0003-glitched-cfs-${PV}.patch")
+	fi
 	if use bmq; then
 		PATCHES=(${PATCHES} 
 				"${DISTDIR}/0009-glitched-bmq-${PV}.patch"
