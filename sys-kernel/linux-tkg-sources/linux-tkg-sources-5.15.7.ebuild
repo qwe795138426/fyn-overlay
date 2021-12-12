@@ -18,7 +18,7 @@ SHPV="${KV_MAJOR}.${KV_MINOR}"
 
 KEYWORDS="~amd64"
 
-IUSE+="bmq pds cfs bcachefs"
+IUSE+="bmq pds cfs bcachefs cjktty"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
 REQUIRED_USE="^^ ( bmq pds cfs )"
@@ -27,6 +27,7 @@ SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
+		https://github.rc1844.workers.dev/zhmars/cjktty-patches/blob/master/v${KV_MAJOR}.x/cjktty-${SHPV}.patch -> cjktty-${SHPV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch -> 0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range.patch -> 0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0002-clear-patches.patch -> 0002-clear-patches-${PV}.patch
@@ -37,8 +38,6 @@ SRC_URI="${KERNEL_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0005-glitched-pds.patch -> 0005-glitched-pds-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0006-add-acs-overrides_iommu.patch -> 0006-add-acs-overrides_iommu-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-fsync.patch -> 0007-v${SHPV}-fsync-${PV}.patch
-		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-futex_waitv.patch -> 0007-v${SHPV}-futex_waitv-${PV}.patch
-		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-fsync1_via_futex_waitv.patch -> 0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-winesync.patch -> 0007-v${SHPV}-winesync-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0008-${SHPV}-bcachefs.patch -> 0008-${SHPV}-bcachefs-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-bmq.patch -> 0009-glitched-bmq-${PV}.patch
@@ -52,8 +51,7 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
 		"${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
-		#"${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch"
-		#"${DISTDIR}/0007-v${SHPV}-futex_waitv-${PV}.patch"
+		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 		"${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch")
 
@@ -83,6 +81,10 @@ pkg_setup() {
 	if use bcachefs; then
 		PATCHES=(${PATCHES} 
 				"${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch")
+	fi
+	if use cjktty; then
+		PATCHES=(${PATCHES}
+				"${DISTDIR}/cjktty-${SHPV}.patch")
 	fi
 	kernel-2_pkg_setup
 }
