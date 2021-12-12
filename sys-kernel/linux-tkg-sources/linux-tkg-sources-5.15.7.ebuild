@@ -86,6 +86,8 @@ src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
 	kernel-2_src_prepare
 	eapply ${PATCHES}
+	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
+	eapply "${DISTDIR}/0001-pf-patches.patch"
 	if use cfs; then
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
