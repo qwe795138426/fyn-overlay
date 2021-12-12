@@ -53,7 +53,7 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		"${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
-		"${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch"
+		#"${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch"
 		#"${DISTDIR}/0007-v${SHPV}-futex_waitv-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 		"${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch")
