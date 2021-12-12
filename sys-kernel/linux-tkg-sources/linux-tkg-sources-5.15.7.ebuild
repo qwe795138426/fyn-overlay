@@ -40,19 +40,12 @@ SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-bmq.patch -> 0009-glitched-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-ondemand-bmq.patch -> 0009-glitched-ondemand-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-prjc_v${SHPV}-r${PRJC_R}.patch -> 0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch
-		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0012-misc-additions.patch -> 0012-misc-additions-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-futex_waitv.patch -> 0007-v${SHPV}-futex_waitv-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-fsync1_via_futex_waitv.patch -> 0007-v${SHPV}-fsync1_via_futex_waitv.patch
 "
 
 
 pkg_setup() {
-	ewarn ""
-	ewarn "${PN} is *not* supported by the Gentoo Kernel Project in any way."
-	ewarn "If you need support, please contact the pf developers directly."
-	ewarn "Do *not* open bugs in Gentoo's bugzilla unless you have issues with"
-	ewarn "the ebuilds. Thank you."
-	ewarn ""
 	kernel-2_pkg_setup
 }
 
@@ -69,7 +62,6 @@ src_prepare() {
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
-	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-futex_waitv-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-fsync1_via_futex_waitv.patch"
 	if use bmq; then
