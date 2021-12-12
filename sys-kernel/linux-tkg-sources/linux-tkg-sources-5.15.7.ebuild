@@ -18,10 +18,10 @@ SHPV="${KV_MAJOR}.${KV_MINOR}"
 
 KEYWORDS="~amd64"
 
-IUSE+="bmq pds cfs bcachefs cjktty"
+IUSE+="bmq pds bcachefs cjktty"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
-REQUIRED_USE="^^ ( bmq pds cfs )"
+REQUIRED_USE="^^ ( bmq pds )"
 
 SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
@@ -70,10 +70,8 @@ src_prepare() {
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
-	if use cfs; then
-		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
-		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-	fi
+	eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+	eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
 	if use bmq; then
 		eapply "${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch"
 		eapply "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
