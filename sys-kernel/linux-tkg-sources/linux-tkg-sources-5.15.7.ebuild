@@ -43,6 +43,7 @@ SRC_URI="${KERNEL_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-bmq.patch -> 0009-glitched-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-ondemand-bmq.patch -> 0009-glitched-ondemand-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-prjc_v${SHPV}-r${PRJC_R}.patch -> 0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0012-misc-additions.patch -> 0012-misc-additions-${PV}.patch
 "
 
 PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch"
@@ -53,7 +54,8 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
 		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
-		"${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch")
+		"${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch"
+		"${DISTDIR}/0012-misc-additions-${PV}.patch")
 
 
 pkg_setup() {
