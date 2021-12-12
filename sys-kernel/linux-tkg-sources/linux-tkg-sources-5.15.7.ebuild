@@ -22,16 +22,19 @@ IUSE+="bmq pds cfs bcachefs cjktty"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
 REQUIRED_USE="^^ ( bmq pds cfs )"
+ZEN_VERSION="1"
 
 SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
+		https://github.rc1844.workers.dev/zen-kernel/zen-kernel/releases/download/v${PV}-zen${ZEN_VERSION}/v${PV}-zen${ZEN_VERSION}.patch.xz
 		https://github.rc1844.workers.dev/HougeLangley/customkernel/releases/download/v5.15-others/v1-cjktty-${SHPV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch -> 0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range.patch -> 0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0002-clear-patches.patch -> 0002-clear-patches-${PV}.patch
 		https://github.rc1844.workers.dev/hakavlad/le9-patch/blob/main/le9ec_patches/le9ec-${SHPV}-MGLRU.patch -> le9ec-${SHPV}-MGLRU-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/community-patches/blob/master/linux515-tkg/lru_${SHPV}.mypatch -> lru_${SHPV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0002-mm-Support-soft-dirty-flag-read-with-reset.patch -> 0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0003-glitched-base.patch -> 0003-glitched-base-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs-additions.patch -> 0003-glitched-cfs-additions-${PV}.patch
@@ -56,8 +59,13 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 		"${DISTDIR}/0012-misc-additions-${PV}.patch"
-		"${DISTDIR}/0003-glitched-base-${PV}.patch")
+		"${DISTDIR}/0003-glitched-base-${PV}.patch"
+		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
+		"${DISTDIR}/le9ec-${SHPV}-MGLRU-${PV}.patch"
+		"${DISTDIR}/lru_${SHPV}.patch")
 
+UNIPATCH_LIST="${DISTDIR}/v${PV}-zen${ZEN_VERSION}.patch.xz"
+UNIPATCH_STRICTORDER="yes"
 
 pkg_setup() {
 	ewarn ""
