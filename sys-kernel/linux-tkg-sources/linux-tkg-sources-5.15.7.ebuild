@@ -80,7 +80,6 @@ src_prepare() {
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
 	eapply "${DISTDIR}/${SHPV}-bfq-lucjan-r2K211210v1.patch"
 	eapply "${DISTDIR}/0001-btrfs-patches.patch"
-	eapply "${DISTDIR}/0001-futex-resync-from-gitlab.collabora.com.patch"
 	if use cfs; then
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
