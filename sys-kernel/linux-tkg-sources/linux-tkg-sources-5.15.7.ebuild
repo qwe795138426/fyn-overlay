@@ -77,7 +77,6 @@ src_prepare() {
 	eapply "${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
-	eapply "${DISTDIR}/lru_${SHPV}.patch"
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
 	eapply "${DISTDIR}/${SHPV}-bfq-lucjan-r2K211210v1.patch"
 	eapply "${DISTDIR}/0001-btrfs-patches.patch"
