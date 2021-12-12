@@ -27,7 +27,7 @@ SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
-		https://github.rc1844.workers.dev/zhmars/cjktty-patches/blob/master/v${KV_MAJOR}.x/cjktty-${SHPV}.patch -> cjktty-${SHPV}.patch
+		https://github.rc1844.workers.dev/HougeLangley/customkernel/releases/download/v5.15-others/v1-cjktty-${SHPV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch -> 0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-mm-Support-soft-dirty-flag-reset-for-VA-range.patch -> 0001-mm-Support-soft-dirty-flag-reset-for-VA-range-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0002-clear-patches.patch -> 0002-clear-patches-${PV}.patch
@@ -64,27 +64,22 @@ pkg_setup() {
 	ewarn "the ebuilds. Thank you."
 	ewarn ""
 	if use cfs; then
-		PATCHES=(${PATCHES} 
-				"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-				"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
-				"${DISTDIR}/0003-glitched-base-${PV}.patch")
+		eapply  "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
+		eapply  "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+		eapply  "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	fi
 	if use bmq; then
-		PATCHES=(${PATCHES} 
-				"${DISTDIR}/0009-glitched-bmq-${PV}.patch"
-				"${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch")
+		eapply  "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
+		eapply  "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
 	fi
 	if use pds; then
-		PATCHES=(${PATCHES} 
-				"${DISTDIR}/0005-glitched-pds-${PV}.patch")
+		eapply  "${DISTDIR}/0005-glitched-pds-${PV}.patch"
 	fi
 	if use bcachefs; then
-		PATCHES=(${PATCHES} 
-				"${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch")
+		eapply  "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
 	fi
 	if use cjktty; then
-		PATCHES=(${PATCHES}
-				"${DISTDIR}/cjktty-${SHPV}.patch")
+		eapply  "${DISTDIR}/v1-cjktty-${SHPV}.patch"
 	fi
 	kernel-2_pkg_setup
 }
