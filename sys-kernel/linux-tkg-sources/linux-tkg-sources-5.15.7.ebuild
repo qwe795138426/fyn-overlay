@@ -26,7 +26,6 @@ REQUIRED_USE="^^ ( bmq pds cfs )"
 SRC_URI="${KERNEL_URI}
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
 		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
-		https://github.rc1844.workers.dev/zen-kernel/zen-kernel/releases/download/v${PV}-zen1/v${PV}-zen1.patch.xz
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
 		https://github.rc1844.workers.dev/HougeLangley/customkernel/releases/download/v5.15-others/v1-cjktty-${SHPV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by.patch -> 0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch
@@ -73,6 +72,7 @@ pkg_setup() {
 src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
 	kernel-2_src_prepare
+	eapply ${PATCHES}
 	if use cfs; then
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
