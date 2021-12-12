@@ -66,22 +66,27 @@ pkg_setup() {
 	ewarn "the ebuilds. Thank you."
 	ewarn ""
 	if use cfs; then
-		eapply  "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-		eapply  "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
-		eapply  "${DISTDIR}/0003-glitched-base-${PV}.patch"
+		PATCHES=( ${PATCHES}
+				"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
+				"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+				"${DISTDIR}/0003-glitched-base-${PV}.patch")
 	fi
 	if use bmq; then
-		eapply  "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
-		eapply  "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
+		PATCHES=( ${PATCHES}
+				"${DISTDIR}/0009-glitched-bmq-${PV}.patch"
+				"${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch")
 	fi
 	if use pds; then
-		eapply  "${DISTDIR}/0005-glitched-pds-${PV}.patch"
+		PATCHES=( ${PATCHES}
+				"${DISTDIR}/0005-glitched-pds-${PV}.patch")
 	fi
 	if use bcachefs; then
-		eapply  "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
+		PATCHES=( ${PATCHES}
+				"${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch")
 	fi
 	if use cjktty; then
-		eapply  "${DISTDIR}/v1-cjktty-${SHPV}.patch"
+		PATCHES=( ${PATCHES}
+				"${DISTDIR}/v1-cjktty-${SHPV}.patch")
 	fi
 	kernel-2_pkg_setup
 }
