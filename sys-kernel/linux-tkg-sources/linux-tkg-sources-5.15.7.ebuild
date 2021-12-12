@@ -55,7 +55,8 @@ PATCHES=( "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-
 		"${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 		"${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 		"${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch"
-		"${DISTDIR}/0012-misc-additions-${PV}.patch")
+		"${DISTDIR}/0012-misc-additions-${PV}.patch"
+		"${DISTDIR}/0003-glitched-base-${PV}.patch")
 
 
 pkg_setup() {
@@ -72,17 +73,14 @@ src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
 	kernel-2_src_prepare
 	if use cfs; then
-		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
 	fi
 	if use bmq; then
-		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
-		eapply "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
 		eapply "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
+		eapply "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
 	fi
 	if use pds; then
-		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 		eapply "${DISTDIR}/0005-glitched-pds-${PV}.patch"
 	fi
 	if use bcachefs; then
