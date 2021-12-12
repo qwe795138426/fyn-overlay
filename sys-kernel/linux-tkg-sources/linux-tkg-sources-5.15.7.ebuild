@@ -75,7 +75,6 @@ src_prepare() {
 	eapply "${DISTDIR}/0002-mm-Support-soft-dirty-flag-read-with-reset-${PV}.patch"
 	eapply "${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
-	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
