@@ -70,6 +70,7 @@ pkg_setup() {
 
 src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
+	kernel-2_src_prepare
 	if use cfs; then
 		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
@@ -90,7 +91,6 @@ src_prepare() {
 	if use cjktty; then
 		eapply "${DISTDIR}/v1-cjktty-${SHPV}.patch"
 	fi
-	kernel-2_src_prepare
 }
 
 pkg_postinst() {
