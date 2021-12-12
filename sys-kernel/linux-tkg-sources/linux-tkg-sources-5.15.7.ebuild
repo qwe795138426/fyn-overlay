@@ -4,7 +4,7 @@
 EAPI=8
 ETYPE="sources"
 K_WANT_GENPATCHES="base extras"
-K_GENPATCHES_VER="2"
+K_GENPATCHES_VER="9"
 K_SECURITY_UNSUPPORTED="1"
 K_NOSETEXTRAVERSION="1"
 PRJC_R=1
@@ -23,9 +23,7 @@ DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desk
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
 REQUIRED_USE="^^ ( bmq pds )"
 
-SRC_URI="${KERNEL_BASE_URI}/linux-${KV_MAJOR}.${KV_MINOR}.tar.xz
-		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
-		https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
+SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
 		https://github.rc1844.workers.dev/HougeLangley/customkernel/releases/download/v${SHPV}-others/v1-cjktty-${SHPV}.patch
 		https://github.rc1844.workers.dev/sirlucjan/kernel-patches/raw/master/${SHPV}/bbr2-patches/0001-bbr2-${SHPV}-introduce-BBRv2.patch
