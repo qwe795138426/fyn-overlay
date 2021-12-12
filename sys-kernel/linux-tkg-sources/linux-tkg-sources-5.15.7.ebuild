@@ -67,7 +67,6 @@ pkg_setup() {
 src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
 	kernel-2_src_prepare
-	eapply ${PATCHES}
 	eapply "${DISTDIR}/more-uarches-for-kernel-${SHPV}%2B-${PV}.patch"
 	eapply "${DISTDIR}/0001-pf-patches.patch"
 	eapply "${DISTDIR}/0001-add-sysctl-to-disallow-unprivileged-CLONE_NEWUSER-by-${PV}.patch"
