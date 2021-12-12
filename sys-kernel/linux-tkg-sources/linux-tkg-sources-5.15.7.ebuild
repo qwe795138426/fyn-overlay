@@ -21,7 +21,7 @@ KEYWORDS="~amd64"
 IUSE+="bmq pds cfs bcachefs"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
-REQUIRED_USE="^^(bmq pds cfs)"
+REQUIRED_USE="^^ ( bmq pds cfs )"
 USE="bmq bcachefs"
 
 SRC_URI="${KERNEL_URI}
