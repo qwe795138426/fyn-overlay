@@ -76,7 +76,6 @@ src_prepare() {
 	eapply "${DISTDIR}/0006-add-acs-overrides_iommu-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-fsync-${PV}.patch"
 	eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
-	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
 	eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	eapply "${DISTDIR}/le9ec-${SHPV}-MGLRU-${PV}.patch"
 	eapply "${DISTDIR}/lru_${SHPV}.patch"
