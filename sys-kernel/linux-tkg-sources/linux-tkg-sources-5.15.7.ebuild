@@ -65,34 +65,30 @@ pkg_setup() {
 	ewarn "Do *not* open bugs in Gentoo's bugzilla unless you have issues with"
 	ewarn "the ebuilds. Thank you."
 	ewarn ""
-	if use cfs; then
-		PATCHES=( ${PATCHES}
-				"${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
-				"${DISTDIR}/0003-glitched-cfs-${PV}.patch"
-				"${DISTDIR}/0003-glitched-base-${PV}.patch")
-	fi
-	if use bmq; then
-		PATCHES+=( ${PATCHES}
-				"${DISTDIR}/0009-glitched-bmq-${PV}.patch"
-				"${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch")
-	fi
-	if use pds; then
-		PATCHES+=( ${PATCHES}
-				"${DISTDIR}/0005-glitched-pds-${PV}.patch")
-	fi
-	if use bcachefs; then
-		PATCHES+=( ${PATCHES}
-				"${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch")
-	fi
-	if use cjktty; then
-		PATCHES+=( "${DISTDIR}/v1-cjktty-${SHPV}.patch")
-	fi
 	kernel-2_pkg_setup
 }
 
 src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES().
-	default
+	if use cfs; then
+		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
+	fi
+	if use bmq; then
+		eapply "${DISTDIR}/0009-glitched-bmq-${PV}.patch"
+		eapply "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
+	fi
+	if use pds; then
+		eapply "${DISTDIR}/0005-glitched-pds-${PV}.patch"
+	fi
+	if use bcachefs; then
+		eapply "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
+	fi
+	if use cjktty; then
+		eapply "${DISTDIR}/v1-cjktty-${SHPV}.patch"
+	fi
+	kernel-2_src_prepare
 }
 
 pkg_postinst() {
