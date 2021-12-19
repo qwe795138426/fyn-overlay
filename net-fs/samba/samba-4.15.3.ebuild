@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{8..9} )
+PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="threads(+),xml(+)"
 inherit python-single-r1 waf-utils multilib-minimal linux-info systemd pam tmpfiles
 
@@ -16,24 +16,22 @@ if [[ ${PV} = *_rc* ]]; then
 	SRC_URI="mirror://samba/rc/${MY_P}.tar.gz"
 else
 	SRC_URI="mirror://samba/stable/${MY_P}.tar.gz"
-	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 sparc x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~sparc ~x86"
 fi
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="acl addc addns ads ceph client cluster cups debug dmapi fam glusterfs
-gpg iprint json ldap ntvfs pam profiling-data python quota +regedit selinux
+IUSE="acl addc ads ceph client cluster cups debug dmapi fam glusterfs
+gpg iprint json ldap pam profiling-data python quota +regedit selinux
 snapper spotlight syslog system-heimdal +system-mitkrb5 systemd test winbind
 zeroconf"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	addc? ( python json winbind )
-	addns? ( python )
-	ads? ( acl ldap winbind )
+	ads? ( acl ldap python winbind )
 	cluster? ( ads )
 	gpg? ( addc )
-	ntvfs? ( addc )
 	spotlight? ( json )
 	test? ( python )
 	!ads? ( !addc )
@@ -66,27 +64,30 @@ COMMON_DEPEND="
 	dev-libs/popt[${MULTILIB_USEDEP}]
 	dev-perl/Parse-Yapp
 	>=net-libs/gnutls-3.4.7[${MULTILIB_USEDEP}]
-	net-libs/libnsl:=[${MULTILIB_USEDEP}]
 	sys-libs/e2fsprogs-libs[${MULTILIB_USEDEP}]
-	>=sys-libs/ldb-2.2.1[ldap(+)?,${MULTILIB_USEDEP}]
-	<sys-libs/ldb-2.3.0[ldap(+)?,${MULTILIB_USEDEP}]
+	>=sys-libs/ldb-2.4.1[ldap(+)?,${MULTILIB_USEDEP}]
+	<sys-libs/ldb-2.5.0[ldap(+)?,${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	sys-libs/liburing:=[${MULTILIB_USEDEP}]
 	sys-libs/ncurses:0=
 	sys-libs/readline:0=
-	>=sys-libs/talloc-2.3.1[${MULTILIB_USEDEP}]
-	>=sys-libs/tdb-1.4.3[${MULTILIB_USEDEP}]
-	>=sys-libs/tevent-0.10.2[${MULTILIB_USEDEP}]
+	>=sys-libs/talloc-2.3.3[${MULTILIB_USEDEP}]
+	>=sys-libs/tdb-1.4.4[${MULTILIB_USEDEP}]
+	>=sys-libs/tevent-0.11.0[${MULTILIB_USEDEP}]
 	sys-libs/zlib[${MULTILIB_USEDEP}]
 	virtual/libcrypt:=[${MULTILIB_USEDEP}]
 	virtual/libiconv
 	$(python_gen_cond_dep "
-		addns? (
+		addc? (
+			dev-python/dnspython:=[\${PYTHON_USEDEP}]
+			dev-python/markdown[\${PYTHON_USEDEP}]
+		)
+		ads? (
 			dev-python/dnspython:=[\${PYTHON_USEDEP}]
 			net-dns/bind-tools[gssapi]
 		)
 	")
-	!alpha? ( !sparc? ( sys-libs/llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-libunwind:= ) )
+	!alpha? ( !sparc? ( sys-libs/llvm-libunwind:= ) )
 	acl? ( virtual/acl )
 	ceph? ( sys-cluster/ceph )
 	cluster? ( net-libs/rpcsvc-proto )
@@ -208,7 +209,6 @@ multilib_src_configure() {
 		--without-winexe
 		$(multilib_native_use_with acl acl-support)
 		$(multilib_native_usex addc '' '--without-ad-dc')
-		$(multilib_native_use_with addns dnsupdate)
 		$(multilib_native_use_with ads)
 		$(multilib_native_use_enable ceph cephfs)
 		$(multilib_native_use_with cluster cluster-support)
@@ -219,7 +219,6 @@ multilib_src_configure() {
 		$(multilib_native_use_with gpg gpgme)
 		$(multilib_native_use_with json)
 		$(multilib_native_use_enable iprint)
-		$(multilib_native_use_with ntvfs ntvfs-fileserver)
 		$(multilib_native_use_with pam)
 		$(multilib_native_usex pam "--with-pammodulesdir=${EPREFIX}/$(get_libdir)/security" '')
 		$(multilib_native_use_with quota quotas)
@@ -270,7 +269,8 @@ multilib_src_install() {
 
 		# create symlink for cups (bug #552310)
 		if use cups ; then
-			dosym ../../../bin/smbspool /usr/libexec/cups/backend/smb
+			dosym ../../../bin/smbspool \
+				/usr/libexec/cups/backend/smb
 		fi
 
 		# install example config file
@@ -291,7 +291,10 @@ multilib_src_install() {
 		newconfd "${CONFDIR}/samba4.confd" samba
 
 		dotmpfiles "${FILESDIR}"/samba.conf
-		use addc || rm "${D}/$(systemd_get_systemunitdir)/samba.service" || die
+		if ! use addc ; then
+			rm "${D}/$(systemd_get_systemunitdir)/samba.service" \
+				|| die
+		fi
 
 		# Preserve functionality for old gentoo-specific unit names
 		dosym nmb.service "$(systemd_get_systemunitdir)/nmbd.service"
@@ -329,7 +332,9 @@ pkg_postinst() {
 		elog "controller work previously known as 'samba4'."
 		elog
 	fi
-	elog "For further information and migration steps make sure to read "
-	elog "https://samba.org/samba/history/${P}.html "
-	elog "https://wiki.samba.org/index.php/Samba4/HOWTO "
+	if [[ "${PV}" != *_rc* ]] ; then
+		elog "For further information and migration steps make sure to read "
+		elog "https://samba.org/samba/history/${P}.html "
+		elog "https://wiki.samba.org/index.php/Samba4/HOWTO "
+	fi
 }
