@@ -36,5 +36,5 @@ jobs:
           git config --global user.email "qwe7951384261@outlook.com"
           git config --global user.name "fyn5908"
           git add .
-          git commit -m "update samba"
+          git commit -m "update samba [automatic commit]"
           git push
