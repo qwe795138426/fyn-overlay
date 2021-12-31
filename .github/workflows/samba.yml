@@ -26,7 +26,9 @@ jobs:
       - name: 克隆存储库
         run: git clone https://github.com/gentoo/gentoo.git
       - name: 转移samba的ebuild
-        run: cp -r gentoo/net-fs/samba/* ./net-fs/samba/
+        run: |
+          rm ./net-fs/samba/*.ebuild
+          cp -r gentoo/net-fs/samba/* ./net-fs/samba/
       - name: 更改内容以适配llvm-libunwind并删除克隆的存储库
         run: |
           sed -i 's/libunwind/llvm-libunwind/g' ./net-fs/samba/samba-*
