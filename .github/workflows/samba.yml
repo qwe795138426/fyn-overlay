@@ -27,7 +27,7 @@ jobs:
         run: git clone https://github.com/gentoo/gentoo.git
       - name: 转移samba的ebuild
         run: |
-          rm ./net-fs/samba/*.ebuild
+          rm -f ./net-fs/samba/*.ebuild
           cp -r gentoo/net-fs/samba/* ./net-fs/samba/
       - name: 更改内容以适配llvm-libunwind并删除克隆的存储库
         run: |
