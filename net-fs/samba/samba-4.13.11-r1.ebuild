@@ -86,7 +86,7 @@ COMMON_DEPEND="
 			net-dns/bind-tools[gssapi]
 		)
 	")
-	!alpha? ( !sparc? ( sys-libs/llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-libunwind:= ) )
+	!alpha? ( !sparc? ( sys-libs/llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-llvm-libunwind:= ) )
 	acl? ( virtual/acl )
 	ceph? ( sys-cluster/ceph )
 	cluster? ( net-libs/rpcsvc-proto )
