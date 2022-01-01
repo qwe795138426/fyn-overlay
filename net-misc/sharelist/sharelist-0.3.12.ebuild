@@ -21,6 +21,7 @@ src_install() {
 	fperms -R +x /opt/${PN}/sharelist
 	fperms -R +w /opt/${PN}/
 	dosym "../../opt/${PN}/sharelist" "usr/bin/sharelist"
+	newinitd "${FILESDIR}/sharelist.init" sharelist
 }
 	
 
