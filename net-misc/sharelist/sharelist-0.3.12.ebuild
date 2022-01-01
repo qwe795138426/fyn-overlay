@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}/sharelist_linux_amd64"
+S="${WORKDIR}"
 
 src_install() {
 	insinto "/opt/${PN}"
