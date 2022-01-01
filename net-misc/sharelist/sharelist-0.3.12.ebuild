@@ -19,6 +19,7 @@ src_install() {
 	insinto "/opt/${PN}"
 	doins -r *
 	fperms -R +x /opt/${PN}/sharelist
+	fperms -R +w /opt/${PN}/
 	dosym "../../opt/${PN}/sharelist" "usr/bin/sharelist"
 }
 	
