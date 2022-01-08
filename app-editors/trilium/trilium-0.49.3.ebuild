@@ -7,7 +7,7 @@ inherit desktop pax-utils xdg
 
 DESCRIPTION="Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases."
 HOMEPAGE="https://github.com/zadam/trilium"
-SRC_URI="https://github.rc1844.workers.dev/zadam/trilium/releases/download/v${PV}/trilium-linux-x64-${PV}.tar.xz"
+SRC_URI="https://fyn-github-mirror.qwe7951384261.workers.dev/https://github.com/zadam/trilium/releases/download/v${PV}/trilium-linux-x64-${PV}.tar.xz"
 
 LICENSE="AGPL-3.0"
 SLOT="0"
