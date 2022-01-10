@@ -25,7 +25,7 @@ SLOT="0"
 IUSE="acl addc addns ads ceph client cluster cups debug dmapi fam glusterfs
 gpg iprint json ldap ntvfs pam profiling-data python quota +regedit selinux
 snapper spotlight syslog system-heimdal +system-mitkrb5 systemd test winbind
-zeroconf"
+zeroconf llvm-libunwind"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	addc? ( python json winbind )
@@ -93,7 +93,7 @@ COMMON_DEPEND="
 			net-dns/bind-tools[gssapi]
 		)
 	")
-	!alpha? ( !sparc? ( sys-libs/llvm-libunwind:= ) )
+	!alpha? ( !sparc? ( llvm-libunwind? (sys-libs/llvm-libunwind:= ) !llvm-libunwind? ( sys-libs/libunwind:= )))
 	acl? ( virtual/acl )
 	ceph? ( sys-cluster/ceph )
 	cluster? ( net-libs/rpcsvc-proto )
