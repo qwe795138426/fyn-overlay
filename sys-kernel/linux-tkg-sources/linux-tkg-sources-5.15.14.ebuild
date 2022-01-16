@@ -4,7 +4,7 @@
 EAPI=8
 ETYPE="sources"
 K_WANT_GENPATCHES="base extras"
-K_GENPATCHES_VER="14"
+K_GENPATCHES_VER="16"
 K_SECURITY_UNSUPPORTED="1"
 K_NOSETEXTRAVERSION="1"
 PRJC_R=1
@@ -18,10 +18,10 @@ SHPV="${KV_MAJOR}.${KV_MINOR}"
 
 KEYWORDS="~amd64"
 
-IUSE+="bmq pds bcachefs cjktty"
+IUSE="bmq pds bcachefs cjktty cfs"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
-REQUIRED_USE="^^ ( bmq pds )"
+REQUIRED_USE="^^ ( bmq pds cfs )"
 
 SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/graysky2/kernel_compiler_patch/raw/master/more-uarches-for-kernel-${SHPV}%2B.patch -> more-uarches-for-kernel-${SHPV}%2B-${PV}.patch
@@ -40,6 +40,9 @@ SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-bmq.patch -> 0009-glitched-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-glitched-ondemand-bmq.patch -> 0009-glitched-ondemand-bmq-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0009-prjc_v${SHPV}-r${PRJC_R}.patch -> 0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-base.patch -> 0003-glitched-base-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs.patch -> 0003-glitched-cfs-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs-additions.patch -> 0003-glitched-cfs-additions-${PV}.patch
 "
 
 
@@ -70,6 +73,11 @@ src_prepare() {
 	fi
 	if use bcachefs; then
 		eapply "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
+	fi
+	if use cfs; then
+		eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-cfs-${PV}.patch"
+		eapply "${DISTDIR}/0003-glitched-cfs-additions-${PV}.patch"
 	fi
 	if use cjktty; then
 		eapply "${DISTDIR}/v1-cjktty-${SHPV}.patch"
