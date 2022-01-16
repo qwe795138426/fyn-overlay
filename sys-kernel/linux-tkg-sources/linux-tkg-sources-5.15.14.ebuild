@@ -16,9 +16,11 @@ detect_arch
 # major kernel version, e.g. 5.14
 SHPV="${KV_MAJOR}.${KV_MINOR}"
 
+COMMUNITY_SHPY="${KV_MAJOR}${KV_MINOR}"
+
 KEYWORDS="~amd64"
 
-IUSE="bmq pds bcachefs cjktty cfs"
+IUSE="bmq pds bcachefs cjktty cfs lru"
 DESCRIPTION="the Linux Kernel with a selection of patches aiming for better desktop/gaming experience and Gentoo's genpatches"
 HOMEPAGE="https://github.rc1844.workers.dev/Frogging-Family/linux-tkg"
 REQUIRED_USE="^^ ( bmq pds cfs )"
@@ -43,6 +45,7 @@ SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-base.patch -> 0003-glitched-base-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs.patch -> 0003-glitched-cfs-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs-additions.patch -> 0003-glitched-cfs-additions-${PV}.patch
+		https://github.rc1844.workers.dev/Frogging-Family/community-patches/blob/master/linux${COMMUNITY_SHPY}-tkg/lru_${SHPV}.mypatch -> lru_${SHPV}-${PV}.patch
 "
 
 
@@ -81,6 +84,9 @@ src_prepare() {
 	fi
 	if use cjktty; then
 		eapply "${DISTDIR}/v1-cjktty-${SHPV}.patch"
+	fi
+	if use lru; then
+		eapply "${DISTDIR}/lru_${SHPV}-${PV}.patch"
 	fi
 }
 
