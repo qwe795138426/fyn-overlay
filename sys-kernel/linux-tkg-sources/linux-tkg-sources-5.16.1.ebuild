@@ -46,13 +46,12 @@ SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs-additions.patch -> 0003-glitched-cfs-additions-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0012-misc-additions.patch -> 0012-misc-additions-${PV}.patch
 "
-# 暂时缺少bcachefs支持
-	:<<EOF
-	if use bcachefs; then
-		eapply "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
-	fi
-	EOF
-	# https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0008-${SHPV}-bcachefs.patch -> 0008-${SHPV}-bcachefs-${PV}.patch
+# 暂时缺少bcachefs,percpu支持
+
+#	if use bcachefs; then
+#		eapply "${DISTDIR}/0008-${SHPV}-bcachefs-${PV}.patch"
+#	fi
+#	# https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0008-${SHPV}-bcachefs.patch -> 0008-${SHPV}-bcachefs-${PV}.patch
 
 pkg_setup() {
 	kernel-2_pkg_setup
