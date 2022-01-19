@@ -43,7 +43,6 @@ SRC_URI="${GENPATCHES_URI} ${KERNEL_URI} ${ARCH_URI}
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-base.patch -> 0003-glitched-base-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs.patch -> 0003-glitched-cfs-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0003-glitched-cfs-additions.patch -> 0003-glitched-cfs-additions-${PV}.patch
-		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/blob/master/linux-tkg-patches/${SHPV}/0012-misc-additions.patch -> 0012-misc-additions-${PV}.patch
 		https://github.rc1844.workers.dev/Frogging-Family/linux-tkg/raw/master/linux-tkg-patches/${SHPV}/0007-v${SHPV}-fsync1_via_futex_waitv.patch -> 0007-v${SHPV}-fsync1_via_futex_waitv-${PV}.patch
 "
 # 暂时缺少bcachefs,percpu,fsync支持
@@ -71,7 +70,6 @@ src_prepare() {
 	# eapply "${DISTDIR}/0007-v${SHPV}-winesync-${PV}.patch"
 	# eapply "${DISTDIR}/0003-glitched-base-${PV}.patch"
 	eapply "${DISTDIR}/0001-bbr2-${SHPV}-introduce-BBRv2.patch"
-	eapply "${DISTDIR}/0012-misc-additions-${PV}.patch"
 	if use bmq; then
 		eapply "${DISTDIR}/0009-prjc_v${SHPV}-r${PRJC_R}-${PV}.patch"
 		eapply "${DISTDIR}/0009-glitched-ondemand-bmq-${PV}.patch"
