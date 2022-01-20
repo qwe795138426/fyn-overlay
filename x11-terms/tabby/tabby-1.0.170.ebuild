@@ -17,6 +17,8 @@ KEYWORDS="~amd64"
 DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
+RESRICT="mirror"
+S="${WORKDIR}"
 
 
 QA_PREBUILT="*"
