@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="X11 window manager written with XLIB + C"
 HOMEPAGE="https://sourceforge.net/projects/gsmwm/"
-SRC_URI="https://master.dl.sourceforge.net/project/gsmwm/${P}.tar.gz?viasf=1"
+SRC_URI="https://master.dl.sourceforge.net/project/gsmwm/${P}.tar.gz?viasf=1 -> ${P}.tar.gz"
 
 
 LICENSE="GPLv3"
