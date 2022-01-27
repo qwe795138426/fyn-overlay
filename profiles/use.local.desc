@@ -1,0 +1,14 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml.
+# Please add your descriptions to your package's metadata.xml ONLY.
+
+# sys-kernel/linux-tkg-sources
+sys-kernel/linux-tkg-sources:bcachefs - Add becachefs support
+sys-kernel/linux-tkg-sources:bmq - Replace cfs by dmq
+sys-kernel/linux-tkg-sources:cfs - Add several minimal improvement to cfs
+sys-kernel/linux-tkg-sources:pds - Replace cfs by old pds
+sys-kernel/linux-tkg-sources:cjktty - Add cjk support to tty
+
+# x11-wm/gwm
+x11-wm/gwm:acpi - Add sys-power/acpi as a dependence
+x11-wm/gwm:dmenu - Add x11-misc/dmenu as a dependence
+x11-wm/gwm:xsetroot - Add x11-apps/xsetroot as a dependence
