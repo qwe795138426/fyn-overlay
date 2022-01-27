@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit desktop
+
 DESCRIPTION="X11 window manager written with XLIB + C"
 HOMEPAGE="https://sourceforge.net/projects/gsmwm/"
 SRC_URI="https://master.dl.sourceforge.net/project/gsmwm/${P}.tar.gz?viasf=1 -> ${P}.tar.gz"
@@ -29,6 +31,12 @@ BDEPEND="dev-util/ctags"
 
 src_configure() {
 	make
+}
+
+src_install() {
+	doman man/zh_HK/man1/gwm.1 -i18n=zh_HK
+	dobin src/gwm
+	make_session_desktop gwm /usr/bin/gwm
 }
 
 pkg_postinst() {
