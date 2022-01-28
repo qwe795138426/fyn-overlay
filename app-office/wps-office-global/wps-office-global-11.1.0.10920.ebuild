@@ -15,7 +15,7 @@ SLOT="0"
 RESTRICT="strip mirror" # mirror as explained at bug #547372
 QA_PREBUILT="*"
 LICENSE="WPS-EULA"
-IUSE="systemd"
+IUSE="systemd zh-cn"
 KEYWORDS="~amd64"
 
 # Deps got from this (listed in order):
@@ -60,6 +60,7 @@ RDEPEND="
 	media-libs/libvorbis
 	dev-libs/libgpg-error
 	sys-apps/attr
+	zh-cn? (app-office/wps-office-mui-zh-cn)
 "
 
 DEPEND=""
@@ -78,6 +79,7 @@ src_install() {
 
 	insinto /opt/kingsoft/wps-office
 	use systemd || { rm "${S}"/opt/kingsoft/wps-office/office6/libdbus-1.so* || die ; }
+	use zh-cn && {rm -rf "${S}"/opt/kingsoft/wps-office/office6/mui || die ; }
 	doins -r "${S}"/opt/kingsoft/wps-office/{office6,templates}
 
 	fperms 0755 /opt/kingsoft/wps-office/office6/{wps,wpp,et,wpspdf,wpsoffice,promecefpluginhost,transerr,ksolaunch,wpscloudsvr}
