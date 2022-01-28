@@ -88,6 +88,7 @@ src_install() {
 
 	insinto /opt/kingsoft/wps-office
 	doins -r "${S}"/opt/kingsoft/wps-office/{office6,templates}
+	use systemd || { rm "${S}"/opt/kingsoft/wps-office/office6/libdbus-1.so* || die ; }
 	fperms 0755 /opt/kingsoft/wps-office/office6/{et,wpp,wps,wpspdf}
 }
 
