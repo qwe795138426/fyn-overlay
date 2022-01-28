@@ -15,7 +15,7 @@ SLOT="0"
 RESTRICT="strip mirror" # mirror as explained at bug #547372
 QA_PREBUILT="*"
 LICENSE="WPS-EULA"
-IUSE=""
+IUSE="systemd"
 
 # Deps got from this (listed in order):
 # rpm -qpR wps-office-10.1.0.5707-1.a21.x86_64.rpm
@@ -86,8 +86,8 @@ src_install() {
 	doins -r "${S}"/usr/share/{applications,desktop-directories,icons,templates}
 
 	insinto /opt/kingsoft/wps-office
+	use systemd || { rm "${S}"/opt/kingsoft/wps-office/office6/libdbus-1.so* || die ; }
 	doins -r "${S}"/opt/kingsoft/wps-office/{office6,templates}
-
 	fperms 0755 /opt/kingsoft/wps-office/office6/{et,wpp,wps,wpspdf}
 }
 
