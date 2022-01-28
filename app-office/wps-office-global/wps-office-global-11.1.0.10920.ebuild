@@ -60,7 +60,9 @@ RDEPEND="
 	media-libs/libvorbis
 	dev-libs/libgpg-error
 	sys-apps/attr
-	zh-cn? (app-office/wps-office-mui-zh-cn)
+	zh-cn? (
+		app-office/wps-office-mui-zh-cn
+	)
 "
 
 DEPEND=""
