@@ -16,6 +16,7 @@ RESTRICT="strip mirror" # mirror as explained at bug #547372
 QA_PREBUILT="*"
 LICENSE="WPS-EULA"
 IUSE="systemd"
+KEYWORDS="~amd64"
 
 # Deps got from this (listed in order):
 # rpm -qpR wps-office-10.1.0.5707-1.a21.x86_64.rpm
