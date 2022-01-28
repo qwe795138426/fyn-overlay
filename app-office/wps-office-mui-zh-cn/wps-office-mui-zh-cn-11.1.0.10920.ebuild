@@ -17,7 +17,7 @@ LICENSE="WPS-EULA"
 IUSE="systemd"
 KEYWORDS="~amd64"
 
-DEPEND="app-office/wps-office-global"
+DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
