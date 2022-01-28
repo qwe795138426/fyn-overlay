@@ -26,6 +26,5 @@ S="${WORKDIR}"
 src_install() {
 	insinto /opt/kingsoft/wps-office/office6/
 	cd "${WORKDIR}/opt/kingsoft/wps-office/office6/"
-	insopts -Dm644 -t
-	doins mui
+	doins -r mui
 }
