@@ -15,7 +15,7 @@ SLOT="0"
 RESTRICT="strip mirror" # mirror as explained at bug #547372
 LICENSE="WPS-EULA"
 IUSE="systemd"
-KEYWORDS="*"
+KEYWORDS="~amd64"
 
 DEPEND="app-office/wps-office-global"
 RDEPEND="${DEPEND}"
