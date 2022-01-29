@@ -10,7 +10,7 @@ inherit python-single-r1
 DESCRIPTION="ANother Auto NICe daemon(fork version)"
 HOMEPAGE="https://github.com/qwe795138426/Ananicy"
 SRC_URI="https://github.rc1844.workers.dev/qwe795138426/Ananicy/archive/${PV}.tar.gz -> ${P}.tar.gz"
-S="${WORKDIR}/${P^}"
+S="${WORKDIR}/Ananicy-${PV}"
 
 LICENSE="GPL-3"
 SLOT="0"
