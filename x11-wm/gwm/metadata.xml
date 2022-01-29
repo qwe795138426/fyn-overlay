@@ -5,4 +5,9 @@
 		<email>qwe7951384261@outlook.com</email>
 		<name>Yining Feng</name>
 	</maintainer>
+	<use>
+		<flag name="acpi"> Add sys-power/acpi as a dependence </flag>
+		<flag name="dmenu"> Add x11-misc/dmenu as a dependence </flag>
+		<flag name="xsetroot"> Add x11-apps/xetroot as a dependence </flag>
+	</use>
 </pkgmetadata>
