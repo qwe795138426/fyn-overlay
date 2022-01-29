@@ -24,7 +24,7 @@ BDEPEND="${PYTHON_DEPS}"
 DOCS=( README.md )
 
 PATCHES=(
-	"${FILESDIR}/${PN}-fix-sysctl-path.patch"
+	"${FILESDIR}/ananicy-fix-sysctl-path.patch"
 )
 
 src_compile() {
