@@ -96,7 +96,7 @@ src_install() {
 	fperms 755 /opt/${PN}/resources/app/extensions/git/dist/askpass.sh
 	fperms 755 /opt/${PN}/resources/app/extensions/git/dist/askpass-empty.sh
 	fperms -R +x /opt/${PN}/resources/app/out/vs/base/node
-	fperms -R +x /opt/${PN}/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/
+	fperms -R +x /opt/${PN}/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin
 	dosym "../../opt/${PN}/bin/codium" "usr/bin/vscodium"
 	dosym "../../opt/${PN}/bin/codium" "usr/bin/codium"
 	domenu "${FILESDIR}/vscodium.desktop"
