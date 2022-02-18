@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -98,7 +98,7 @@ COMMON_DEPEND="
 	debug? ( dev-util/lttng-ust )
 	dmapi? ( sys-apps/dmapi )
 	fam? ( virtual/fam )
-	gpg? ( app-crypt/gpgme )
+	gpg? ( app-crypt/gpgme:= )
 	json? ( dev-libs/jansson:= )
 	ldap? ( net-nds/openldap[${MULTILIB_USEDEP}] )
 	pam? ( sys-libs/pam )
