@@ -16,7 +16,7 @@ if [[ ${PV} = *_rc* ]]; then
 	SRC_URI="mirror://samba/rc/${MY_P}.tar.gz"
 else
 	SRC_URI="mirror://samba/stable/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~sparc ~x86"
+	KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~riscv sparc x86"
 fi
 S="${WORKDIR}/${MY_P}"
 
@@ -99,7 +99,7 @@ COMMON_DEPEND="
 	fam? ( virtual/fam )
 	gpg? ( app-crypt/gpgme:= )
 	json? ( dev-libs/jansson:= )
-	ldap? ( net-nds/openldap[${MULTILIB_USEDEP}] )
+	ldap? ( net-nds/openldap:=[${MULTILIB_USEDEP}] )
 	pam? ( sys-libs/pam )
 	python? (
 		sys-libs/ldb[python,${PYTHON_SINGLE_USEDEP}]
