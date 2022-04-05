@@ -29,7 +29,6 @@ src_install() {
 	insinto "/opt/${PN}"
 	doins -r *
 	fperms 4711 /opt/${PN}/chrome-sandbox
-	fperms 755 /opt/${PN}/*.sh
 	fperms -R +x /opt/${PN}/trilium
 	dosym "../../opt/${PN}/trilium" "usr/bin/trilium"
 	domenu "${FILESDIR}/trilium.desktop"
