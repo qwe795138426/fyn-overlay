@@ -65,7 +65,7 @@ COMMON_DEPEND="
 	dev-perl/Parse-Yapp
 	>=net-libs/gnutls-3.4.7[${MULTILIB_USEDEP}]
 	>=sys-fs/e2fsprogs-1.46.4-r51[${MULTILIB_USEDEP}]
-	>=sys-libs/ldb-2.5.0[ldap(+)?,${MULTILIB_USEDEP}]
+	>=sys-libs/ldb-2.5.1[ldap(+)?,${MULTILIB_USEDEP}]
 	<sys-libs/ldb-2.6.0[ldap(+)?,${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	sys-libs/liburing:=[${MULTILIB_USEDEP}]
@@ -154,6 +154,7 @@ SHAREDMODS=""
 pkg_setup() {
 	# Package fails to build with distcc
 	export DISTCC_DISABLE=1
+	export PYTHONHASHSEED=1
 
 	python-single-r1_pkg_setup
 
@@ -248,16 +249,16 @@ multilib_src_configure() {
 		myconf+=( --with-shared-modules=DEFAULT,!vfs_snapper )
 	fi
 
-	PYTHONHASHSEED=1 CPPFLAGS="-I${ESYSROOT}/usr/include/et ${CPPFLAGS}" \
-		waf-utils_src_configure ${myconf[@]}
+	CPPFLAGS="-I${ESYSROOT}/usr/include/et ${CPPFLAGS}" \
+	waf-utils_src_configure ${myconf[@]}
 }
 
 multilib_src_compile() {
-	PYTHONHASHSEED=1 waf-utils_src_compile
+	waf-utils_src_compile
 }
 
 multilib_src_install() {
-	PYTHONHASHSEED=1 waf-utils_src_install
+	waf-utils_src_install
 
 	# Make all .so files executable
 	find "${ED}" -type f -name "*.so" -exec chmod +x {} + || die
