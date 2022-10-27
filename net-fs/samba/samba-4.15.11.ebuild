@@ -16,7 +16,7 @@ if [[ ${PV} = *_rc* ]]; then
 	SRC_URI="mirror://samba/rc/${MY_P}.tar.gz"
 else
 	SRC_URI="mirror://samba/stable/${MY_P}.tar.gz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~ppc ~ppc64 ~riscv ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~riscv ~sparc ~x86"
 fi
 S="${WORKDIR}/${MY_P}"
 
@@ -65,14 +65,14 @@ COMMON_DEPEND="
 	dev-perl/Parse-Yapp
 	>=net-libs/gnutls-3.4.7[${MULTILIB_USEDEP}]
 	>=sys-fs/e2fsprogs-1.46.4-r51[${MULTILIB_USEDEP}]
-	>=sys-libs/ldb-2.5.2[ldap(+)?,${MULTILIB_USEDEP}]
-	<sys-libs/ldb-2.6.0[ldap(+)?,${MULTILIB_USEDEP}]
+	>=sys-libs/ldb-2.4.4[ldap(+)?,${MULTILIB_USEDEP}]
+	<sys-libs/ldb-2.5.0[ldap(+)?,${MULTILIB_USEDEP}]
 	sys-libs/libcap[${MULTILIB_USEDEP}]
 	sys-libs/liburing:=[${MULTILIB_USEDEP}]
 	sys-libs/ncurses:0=
 	sys-libs/readline:0=
 	>=sys-libs/talloc-2.3.3[${MULTILIB_USEDEP}]
-	>=sys-libs/tdb-1.4.6[${MULTILIB_USEDEP}]
+	>=sys-libs/tdb-1.4.4[${MULTILIB_USEDEP}]
 	>=sys-libs/tevent-0.11.0[${MULTILIB_USEDEP}]
 	sys-libs/zlib[${MULTILIB_USEDEP}]
 	virtual/libcrypt:=[${MULTILIB_USEDEP}]
@@ -115,7 +115,6 @@ COMMON_DEPEND="
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-util/cmocka-1.1.3[${MULTILIB_USEDEP}]
-	dev-perl/JSON
 	net-libs/libtirpc[${MULTILIB_USEDEP}]
 	|| (
 		net-libs/rpcsvc-proto
@@ -144,10 +143,7 @@ BDEPEND="${PYTHON_DEPS}
 
 PATCHES=(
 	"${FILESDIR}/${PN}-4.4.0-pam.patch"
-	"${FILESDIR}/${PN}-4.16.1-netdb-defines.patch"
-	"${FILESDIR}/${PN}-4.16.2-fix-musl-without-innetgr.patch"
 	"${FILESDIR}/ldb-2.5.2-skip-wav-tevent-check.patch"
-	"${FILESDIR}/${P}-glibc-2.36.patch"
 	"${FILESDIR}/${PN}-4.15.9-llvm-libunwind-automagic.patch"
 )
 
@@ -161,7 +157,6 @@ SHAREDMODS=""
 pkg_setup() {
 	# Package fails to build with distcc
 	export DISTCC_DISABLE=1
-	export PYTHONHASHSEED=1
 
 	python-single-r1_pkg_setup
 
@@ -257,16 +252,16 @@ multilib_src_configure() {
 		myconf+=( --with-shared-modules=DEFAULT,!vfs_snapper )
 	fi
 
-	CPPFLAGS="-I${ESYSROOT}/usr/include/et ${CPPFLAGS}" \
-	waf-utils_src_configure ${myconf[@]}
+	PYTHONHASHSEED=1 CPPFLAGS="-I${ESYSROOT}/usr/include/et ${CPPFLAGS}" \
+		waf-utils_src_configure ${myconf[@]}
 }
 
 multilib_src_compile() {
-	waf-utils_src_compile
+	PYTHONHASHSEED=1 waf-utils_src_compile
 }
 
 multilib_src_install() {
-	waf-utils_src_install
+	PYTHONHASHSEED=1 waf-utils_src_install
 
 	# Make all .so files executable
 	find "${ED}" -type f -name "*.so" -exec chmod +x {} + || die
