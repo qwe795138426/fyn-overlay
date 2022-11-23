@@ -145,6 +145,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.4.0-pam.patch"
 	"${FILESDIR}/ldb-2.5.2-skip-wav-tevent-check.patch"
 	"${FILESDIR}/${PN}-4.15.9-llvm-libunwind-automagic.patch"
+	"${FILESDIR}/${PN}-4.15.12-configure-clang16.patch"
 )
 
 #CONFDIR="${FILESDIR}/$(get_version_component_range 1-2)"
