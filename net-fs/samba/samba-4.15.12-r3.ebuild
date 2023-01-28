@@ -28,7 +28,7 @@ snapper spotlight syslog system-heimdal +system-mitkrb5 systemd test unwind winb
 zeroconf"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}
-	addc? ( python json winbind )
+	addc? ( python json !system-mitkrb5 winbind )
 	ads? ( acl ldap python winbind )
 	cluster? ( ads )
 	gpg? ( addc )
@@ -145,6 +145,8 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.4.0-pam.patch"
 	"${FILESDIR}/ldb-2.5.2-skip-wav-tevent-check.patch"
 	"${FILESDIR}/${PN}-4.15.9-llvm-libunwind-automagic.patch"
+	"${FILESDIR}/${PN}-4.16.2-fix-musl-without-innetgr.patch"
+	"${FILESDIR}/${PN}-4.15.12-configure-clang16.patch"
 )
 
 #CONFDIR="${FILESDIR}/$(get_version_component_range 1-2)"
@@ -265,6 +267,8 @@ multilib_src_install() {
 
 	# Make all .so files executable
 	find "${ED}" -type f -name "*.so" -exec chmod +x {} + || die
+	# smbspool_krb5_wrapper must only be accessible to root, bug #880739
+	find "${ED}" -type f -name "smbspool_krb5_wrapper" -exec chmod go-rwx {} + || die
 
 	if multilib_is_native_abi ; then
 		# install ldap schema for server (bug #491002)
@@ -314,12 +318,6 @@ multilib_src_install() {
 		insinto /etc/security
 		doins examples/pam_winbind/pam_winbind.conf
 	fi
-
-	keepdir /var/cache/samba
-	keepdir /var/lib/ctdb
-	keepdir /var/lib/samba/{bind-dns,private}
-	keepdir /var/lock/samba
-	keepdir /var/log/samba
 }
 
 multilib_src_test() {
