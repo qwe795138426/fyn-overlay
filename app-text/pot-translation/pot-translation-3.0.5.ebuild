@@ -9,7 +9,7 @@ DESCRIPTION="A cross-platform software for text translation and recognition."
 HOMEPAGE="https://github.com/pot-app/pot-desktop"
 SRC_URI="https://github.com/pot-app/pot-desktop/releases/download/3.0.5/pot_3.0.5_amd64.deb"
 
-LICENSE="GPL-3.0"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 
