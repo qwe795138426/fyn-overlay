@@ -36,7 +36,7 @@ src_install() {
 	dobin usr/bin/pot
 	local res
 	for res in 16 32 256 512; do
-		doicon -s ${res} usr/share/icons/hicolor/${res}x${res}/apps/motrix.png
+		doicon -s ${res} usr/share/icons/hicolor/${res}x${res}/apps/pot.png
 	done
 	domenu usr/share/applications/pot.desktop
 }
