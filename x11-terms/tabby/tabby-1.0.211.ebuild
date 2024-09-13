@@ -7,7 +7,7 @@ inherit rpm desktop
 
 DESCRIPTION="Tabby (formerly Terminus) is a highly configurable terminal emulator"
 HOMEPAGE="https://github.com/Eugeny/tabby"
-SRC_URI="https://github.com/Eugeny/tabby/releases/download/v${PV}/tabby-${PV}-linux.rpm"
+SRC_URI="https://github.com/Eugeny/tabby/releases/download/v${PV}/tabby-${PV}-linux-x64.rpm"
 
 
 LICENSE="MIT"
