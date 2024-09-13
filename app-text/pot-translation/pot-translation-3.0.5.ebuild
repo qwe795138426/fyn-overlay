@@ -29,7 +29,7 @@ BDEPEND=""
 QA_PREBUILT="*"
 
 src_unpack() {
-	unpack ${A}.tar.xz
+	unpack ${A}
 	unpack data.tar.gz
 }
 
