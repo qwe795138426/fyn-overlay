@@ -32,7 +32,7 @@ S="${WORKDIR}"
 
 src_unpack() {
 	unpack ${A}
-	unpack data.tar.gz
+	unpack ${WORKDIR}/data.tar.gz
 }
 
 src_install() {
