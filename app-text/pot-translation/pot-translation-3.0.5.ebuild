@@ -28,6 +28,8 @@ BDEPEND=""
 
 QA_PREBUILT="*"
 
+S="${WORKDIR}"
+
 src_unpack() {
 	unpack ${A}
 	unpack data.tar.gz
