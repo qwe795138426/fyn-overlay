@@ -6,7 +6,7 @@ EAPI=7
 inherit gnome2-utils
 
 DESCRIPTION="Icon pack based in macOS and Google Material Design"
-HOMEPAGE="https://github.rc1844.workers.dev/keeferrourke/la-capitaine-icon-theme"
+HOMEPAGE="https://github.com/keeferrourke/la-capitaine-icon-theme"
 
 if [[ ${PV} == *9999* ]];then
 	inherit git-r3
