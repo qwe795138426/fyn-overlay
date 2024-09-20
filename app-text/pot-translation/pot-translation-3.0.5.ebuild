@@ -32,7 +32,7 @@ BDEPEND=""
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}"
+S="${WORKDIR/pot-desktop-${PV}"
 
 src_prepare() {
 	eapply_user
