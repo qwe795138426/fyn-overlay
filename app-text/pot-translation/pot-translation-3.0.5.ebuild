@@ -23,7 +23,7 @@ DEPEND="
 	app-text/tesseract
 	app-text/tessdata_fast
 	net-libs/nodejs
-	sys-apps/pnpm
+	sys-apps/pnpm-bin
 	virtual/rust
 	sys-apps/dbus
 "
