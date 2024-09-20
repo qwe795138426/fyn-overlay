@@ -7,7 +7,7 @@ inherit desktop pax-utils xdg
 
 DESCRIPTION="A cross-platform software for text translation and recognition."
 HOMEPAGE="https://github.com/pot-app/pot-desktop"
-SRC_URI="https://github.com/pot-app/pot-desktop/releases/download/${PV}/pot_${PV}_amd64.deb -> pot-translation-${PV}.deb"
+SRC_URI="https://github.com/pot-app/pot-desktop/archive/refs/tags/${PV}.tar.gz -> pot-translation-${PV}.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
@@ -22,6 +22,10 @@ DEPEND="
 	x11-libs/libXrandr
 	app-text/tesseract
 	app-text/tessdata_fast
+	net-libs/nodejs
+	sys-apps/pnpm
+	virtual/rust
+	sys-apps/dbus
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
@@ -30,8 +34,19 @@ QA_PREBUILT="*"
 
 S="${WORKDIR}"
 
+src_prepare() {
+	eapply_user
+
+	sed -i "s/\"version\".*/\"version\": \"${PV}\"/g" src-tauri/tauri.conf.json || die "Sed failed!"
+	pnpm install
+}
+
+src_compile() {
+	pnpm tauri build -b deb
+}
+
 src_install() {
-	tar xpf data.tar.gz
+	tar xpf src-tauri/target/release/bundle/deb/pot_${PV}_amd64/data.tar.gz
 	dodir /usr
 	cp -a usr/* "${ED}"/usr || die
 	dobin usr/bin/pot
