@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-	net-libs/webkit-gtk
+	net-libs/webkit-gtk:4
 	x11-libs/gtk+
 	dev-libs/libayatana-appindicator
 	x11-misc/xdotool
