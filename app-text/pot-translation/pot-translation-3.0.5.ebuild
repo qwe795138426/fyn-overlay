@@ -7,7 +7,7 @@ inherit desktop pax-utils xdg
 
 DESCRIPTION="A cross-platform software for text translation and recognition."
 HOMEPAGE="https://github.com/pot-app/pot-desktop"
-SRC_URI="https://github.com/pot-app/pot-desktop/archive/refs/tags/${PV}.tar.gz -> pot-translation-${PV}.tar.gz"
+SRC_URI="https://github.com/pot-app/pot-desktop/releases/download/${PV}/pot_${PV}_amd64.deb -> pot-translation-${PV}.deb"
 
 LICENSE="GPL-3+"
 SLOT="0"
@@ -15,37 +15,23 @@ KEYWORDS="~amd64"
 
 DEPEND="
 	net-libs/webkit-gtk
-	gui-libs/gtk
+	x11-libs/gtk+
 	dev-libs/libayatana-appindicator
 	x11-misc/xdotool
 	x11-libs/libxcb
 	x11-libs/libXrandr
 	app-text/tesseract
 	app-text/tessdata_fast
-	net-libs/nodejs
-	virtual/rust
-	sys-apps/pnpm-bin
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}/pot-desktop-${PV}"
-
-src_prepare() {
-	eapply_user
-	sed -i "s/\"version\".*/\"version\": \"${PV}\"/g" src-tauri/tauri.conf.json || die "Sed failed!"
-	pnpm install
-}
-
-src_compile() {
-	pnpm tauri build -b deb
-}
-
+S="${WORKDIR}"
 
 src_install() {
-	tar xpf src-tauri/target/release/bundle/deb/pot_${PV}_amd64/data.tar.gz
+	tar xpf data.tar.gz
 	dodir /usr
 	cp -a usr/* "${ED}"/usr || die
 	dobin usr/bin/pot
