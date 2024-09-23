@@ -5,53 +5,37 @@ EAPI=8
 
 inherit desktop pax-utils xdg
 
-DESCRIPTION="A cross-platform software for text translation and recognition."
+DESCRIPTION="A cross-platform software for text translation and recognition.(Appimage version)"
 HOMEPAGE="https://github.com/pot-app/pot-desktop"
-SRC_URI="https://github.com/pot-app/pot-desktop/archive/refs/tags/${PV}.tar.gz -> pot-translation-${PV}.tar.gz"
+SRC_URI="https://github.com/pot-app/pot-desktop/releases/download/${PV}/pot_${PV}_amd64.AppImage -> pot-translation-${PV}.AppImage"
 
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-	net-libs/webkit-gtk:4
-	x11-libs/gtk+
-	dev-libs/libayatana-appindicator
-	x11-misc/xdotool
-	x11-libs/libxcb
-	x11-libs/libXrandr
-	app-text/tesseract
-	app-text/tessdata_fast
-	net-libs/nodejs
-	sys-apps/pnpm
-	virtual/rust
-	sys-apps/dbus
+	sys-fs/fuse:0
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}/pot-desktop-${PV}"
+S="${WORKDIR}"
 
-src_prepare() {
-	eapply_user
-	pnpm install
-}
-
-src_compile() {
-	pnpm tauri build -b deb
+src_unpack() {
 }
 
 src_install() {
-	tar xpf src-tauri/target/release/bundle/deb/pot_${PV}_amd64/data.tar.gz
-	dodir /usr
-	cp -a usr/* "${ED}"/usr || die
-	dobin usr/bin/pot
-	doicon -s 32 usr/share/icons/hicolor/32x32/apps/pot.png
-	doicon -s 128 usr/share/icons/hicolor/128x128/apps/pot.png
-	doicon -s 256 usr/share/icons/hicolor/256x256@2/apps/pot.png
-	domenu usr/share/applications/pot.desktop
+	dodir /opt/pot-desktop
+	cp &{A} "${ED}"/opt/pot-desktop/pot || die
+	chmod +x "${ED}"/opt/pot-desktop/pot
+	exeinto /opt/bin
+	doexe /opt/pot-desktop/pot
+	doicon -s 32 ${FILESDIR}/icons/hicolor/32x32/apps/pot.png
+	doicon -s 128 ${FILESDIR}/icons/hicolor/128x128/apps/pot.png
+	doicon -s 256 ${FILESDIR}/icons/hicolor/256x256@2/apps/pot.png
+	domenu ${FILESDIR}/pot.desktop
 }
 
 pkg_postinst() {

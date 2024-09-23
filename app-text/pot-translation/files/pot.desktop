@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=Utility;
+Comment=Pot App
+Exec=/opt/pot-desktop/pot
+Icon=pot
+Name=pot
+Terminal=false
+Type=Application
