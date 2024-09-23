@@ -24,7 +24,7 @@ QA_PREBUILT="*"
 S="${WORKDIR}"
 
 src_unpack() {
-
+	pass
 }
 
 src_install() {
