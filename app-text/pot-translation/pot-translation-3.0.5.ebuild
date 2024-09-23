@@ -36,6 +36,7 @@ src_install() {
 	doicon -s 128 ${FILESDIR}/icons/hicolor/128x128/apps/pot.png
 	doicon -s 256 ${FILESDIR}/icons/hicolor/256x256@2/apps/pot.png
 	domenu ${FILESDIR}/pot.desktop
+	dostrip -x /opt/pot-desktop/pot
 }
 
 pkg_postinst() {
