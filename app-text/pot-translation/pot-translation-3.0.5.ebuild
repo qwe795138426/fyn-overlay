@@ -29,7 +29,7 @@ src_unpack() {
 
 src_install() {
 	dodir /opt/pot-desktop
-	cp &{A} "${ED}"/opt/pot-desktop/pot || die
+	cp ${A} "${ED}"/opt/pot-desktop/pot || die
 	chmod +x "${ED}"/opt/pot-desktop/pot
 	exeinto /opt/bin
 	doexe /opt/pot-desktop/pot
