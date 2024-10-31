@@ -16,6 +16,8 @@ KEYWORDS="~amd64"
 DEPEND="
 	x11-libs/gtk+:3
 	dev-libs/nss
+	net-libs/nodejs
+	
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
