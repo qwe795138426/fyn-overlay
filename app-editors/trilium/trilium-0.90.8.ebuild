@@ -22,7 +22,11 @@ BDEPEND=""
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}/trilium-linux-x64"
+S="${WORKDIR}/TriliumNext Notes-linux-x64"
+
+src_unpack() {
+	unpack TriliumNextNotes-v${PV}-linux-x64.zip
+}
 
 src_install() {
 	pax-mark m trilium
