@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Trilium Notes
-Comment=Trilium Notes is a hierarchical note taking application with focus on building large personal knowledge bases.
-GenericName=Note taker
-Exec=teilium %U
+Name=TriliumNext Notes
+Comment=Build your personal knowledge base with TriliumNext Notes
+GenericName=TriliumNext Notes
+Exec=trilium %U
 Icon=trilium
 Type=Application
 StartupNotify=true
-Categories=Office;
+Categories=GNOME;GTK;Utility;
 

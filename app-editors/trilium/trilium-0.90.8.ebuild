@@ -36,7 +36,7 @@ src_install() {
 	fperms -R +x /opt/${PN}/trilium
 	dosym "../../opt/${PN}/trilium" "usr/bin/trilium"
 	domenu "${FILESDIR}/trilium.desktop"
-	newicon "icon.png" "trilium.png"
+	newicon "${FILESDIR}/trilium.png" "trilium.png"
 }
 
 pkg_postinst() {
