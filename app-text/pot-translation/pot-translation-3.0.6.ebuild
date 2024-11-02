@@ -36,9 +36,9 @@ src_unpack() {
 }
 
 src_install() {
-	dodir /opt/pot
-	cp -a opt/pot "${ED}"/opt || die
-	dobin opt/pot
+	dodir /opt/pot-desktop
+	cp -a opt/pot-desktop/pot "${ED}"/opt/pot-desktop || die
+	dobin opt/pot-desktop/pot
 	dodir /usr
 	cp -a usr/* "${ED}"/usr || die
 	local res
