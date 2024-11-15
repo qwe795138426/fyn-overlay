@@ -5,7 +5,9 @@ EAPI=8
 
 inherit unpacker xdg
 
-_I="Linux"
+_md5_prefix="5e6b23f8"
+MY_PV=${PV/_p/-}
+_QPV="28971"
 _QQDownSite="https://dldir1.qq.com/qqfile/qq/QQNT"
 _QQFileName="linuxqq"
 _QQFileSuffix=".deb"
@@ -15,7 +17,7 @@ DESCRIPTION="The new version of the official linux-qq(from gentoo-zh)"
 HOMEPAGE="https://im.qq.com/linuxqq/index.shtml"
 
 SRC_URI="
-	amd64? ( ${_QQDownSite}/$_I/${_QQFileName}_${PV}_amd64.${_QQFileSuffix} )
+	amd64? ( ${_QQDownSite}/${_md5_prefix}/${_QQFileName}_${MY_PV}_amd64${_QQFileSuffix} )
 	liteloader? (
 		https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/releases/download/${_LiteLoader_PV}/LiteLoaderQQNT.zip \
 		-> LiteLoaderQQNT-${_LiteLoader_PV}.zip
