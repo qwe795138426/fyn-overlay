@@ -21,7 +21,6 @@ MODULES_KERNEL_MIN=6.1
 
 src_compile() {
 	local modlist=(
-		rtw_8814au=net/wireless/realtek/rtw88
 		rtw_8703b=net/wireless/realtek/rtw88
 		rtw_8723cs=net/wireless/realtek/rtw88
 		rtw_8723de=net/wireless/realtek/rtw88
@@ -30,6 +29,8 @@ src_compile() {
 		rtw_8723du=net/wireless/realtek/rtw88
 		rtw_8723x=net/wireless/realtek/rtw88
 		rtw_8812au=net/wireless/realtek/rtw88
+		rtw_8814au=net/wireless/realtek/rtw88
+		rtw_8811au=net/wireless/realtek/rtw88
 		rtw_8821a=net/wireless/realtek/rtw88
 		rtw_8821au=net/wireless/realtek/rtw88
 		rtw_8821ce=net/wireless/realtek/rtw88
@@ -40,6 +41,7 @@ src_compile() {
 		rtw_8822b=net/wireless/realtek/rtw88
 		rtw_8822bs=net/wireless/realtek/rtw88
 		rtw_8822bu=net/wireless/realtek/rtw88
+		rtw_8812bu=net/wireless/realtek/rtw88
 		rtw_8822ce=net/wireless/realtek/rtw88
 		rtw_8822c=net/wireless/realtek/rtw88
 		rtw_8822cs=net/wireless/realtek/rtw88
