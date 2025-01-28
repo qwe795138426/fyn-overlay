@@ -59,7 +59,7 @@ src_install() {
 	linux-mod-r1_src_install
 
 	insinto /lib/firmware/rtw88
-	doins firmware/*.bin
+	doins firmware/rtw8814a_fw.bin
 
 	insinto /etc/modprobe.d
 	doins blacklist-rtw88.conf
