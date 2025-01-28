@@ -29,6 +29,7 @@ src_compile() {
 		rtw_8723du=net/wireless/realtek/rtw88
 		rtw_8723x=net/wireless/realtek/rtw88
 		rtw_8812au=net/wireless/realtek/rtw88
+		rtw_8814a=net/wireless/realtek/rtw88
 		rtw_8814au=net/wireless/realtek/rtw88
 		rtw_8821a=net/wireless/realtek/rtw88
 		rtw_8821au=net/wireless/realtek/rtw88
