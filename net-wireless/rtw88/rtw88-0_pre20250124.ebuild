@@ -58,7 +58,7 @@ src_compile() {
 src_install() {
 	linux-mod-r1_src_install
 
-	insinto /lib/firmware
+	insinto /lib/firmware/rtw88
 	doins firmware/*.bin
 
 	insinto /etc/modprobe.d
