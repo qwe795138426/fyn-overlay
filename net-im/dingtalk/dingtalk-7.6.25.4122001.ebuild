@@ -45,6 +45,7 @@ S=${WORKDIR}
 QA_PREBUILT="*"
 
 src_configure() {
+	MY_VERSION=$(cat "${S}"/opt/apps/"${MY_PGK_NAME}"/files/version)
 	# Fix the issue of not being able to start after updating
 	execstack -c ${WORKDIR}/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
 }
