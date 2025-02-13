@@ -7,33 +7,25 @@ DESCRIPTION="set the executable stack flag of ELF binaries and libraries"
 HOMEPAGE="https://people.redhat.com/jakub/prelink"
 SRC_URI="https://people.redhat.com/jakub/prelink/prelink-20130503.tar.bz2"
 
-LICENSE="GPL"
+S="${WORKDIR}"/prelink
+
+LICENSE="GPL-1+"
 SLOT="0"
 KEYWORDS="~amd64"
 
-QA_PREBUILT="*"
-
-S="${WORKDIR}"
+src_prepare() {
+	eautoreconf
+}
 
 src_compile() {
 	cd prelink
-	
 	# fix libelf detection
-    	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4
-    	
-    	autoreconf -fi
-    	
-    	./configure
-    	cd src
-    	make execstack
-    	
+	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4 || die
+	autoreconf -fi || die
+	cd src
+	make execstack || die
 }
-
 
 src_install() {
-	cd prelink/src
-	dobin execstack
+	dobin prelink/src/execstack
 }
-	
-
-
