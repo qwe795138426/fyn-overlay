@@ -14,6 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 src_prepare() {
+	default
 	eautoreconf
 }
 
