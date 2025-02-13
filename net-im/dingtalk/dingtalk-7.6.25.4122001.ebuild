@@ -46,7 +46,7 @@ QA_PREBUILT="*"
 
 src_configure() {
 	# Fix the issue of not being able to start after updating
-	execstack -c /opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
+	execstack -c ${WORKDIR}/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
 }
 src_install() {
 	# Install scalable icon
