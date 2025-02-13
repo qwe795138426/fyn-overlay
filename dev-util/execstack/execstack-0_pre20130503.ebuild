@@ -3,6 +3,8 @@
 
 EAPI=8
 
+inherit autotools
+
 DESCRIPTION="set the executable stack flag of ELF binaries and libraries"
 HOMEPAGE="https://people.redhat.com/jakub/prelink"
 SRC_URI="https://people.redhat.com/jakub/prelink/prelink-20130503.tar.bz2"
