@@ -44,6 +44,10 @@ S=${WORKDIR}
 
 QA_PREBUILT="*"
 
+src_configure() {
+	# Fix the issue of not being able to start after updating
+	execstack -c /opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
+}
 src_install() {
 	# Install scalable icon
 	doicon -s scalable "${FILESDIR}"/dingtalk.svg
@@ -60,8 +64,7 @@ src_install() {
 	rm -f "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/libcurl.so* || die
 	# use system freetype, fix undefined symbol: FT_Get_Color_Glyph_Layer
 	rm -rf "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/libfreetype.so* || die
-	# Fix the issue of not being able to start after updating
-	execstack -c /opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so
+	
 	# Set RPATH for preserve-libs handling
 
 	# fix ldd pattern error
