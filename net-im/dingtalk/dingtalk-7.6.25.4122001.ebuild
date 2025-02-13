@@ -35,7 +35,10 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-BDEPEND="dev-util/patchelf"
+BDEPEND="
+	dev-util/patchelf
+	dev-util/execstack
+"
 
 S=${WORKDIR}
 
