@@ -20,6 +20,7 @@ src_prepare() {
 }
 
 src_compile() {
+	cd src
 	emake execstack
 }
 
