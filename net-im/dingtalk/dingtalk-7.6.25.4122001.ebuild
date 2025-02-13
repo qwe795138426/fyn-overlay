@@ -69,7 +69,7 @@ src_install() {
 		# patchelf --set-rpath "${RPATH_ROOT}/:${RPATH_ROOT}/swiftshader/:${RPATH_ROOT}/platforminputcontexts/:${RPATH_ROOT}/imageformats/" "${x}" || \
 			# die "patchelf failed on ${x}"
 	done
-	popd || die
+	# popd || die
 	# fix ldd pattern error
 	sed -i 's/libc_version=.*/libc_version=`ldd --version | grep ldd | rev | cut -d" " -f1 | rev`/g' "${S}"/opt/apps/"${MY_PGK_NAME}"/files/Elevator.sh || die
 	# Fix fcitx5
