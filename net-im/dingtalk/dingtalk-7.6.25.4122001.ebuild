@@ -58,7 +58,7 @@ src_install() {
 	# use system freetype, fix undefined symbol: FT_Get_Color_Glyph_Layer
 	rm -rf "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/libfreetype.so* || die
 	# Fix the issue of not being able to start after updating
-	# execstack -c /opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so
+	execstack -c /opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so
 	# Set RPATH for preserve-libs handling
 
 	# fix ldd pattern error
@@ -107,12 +107,5 @@ fi
 	insinto /usr
 	doins -r usr/*
 
-	pushd "${S}" || die
-	for x in $(find "opt/apps/${MY_PGK_NAME}") ; do
-		# Fix shell script permissions
-		[[ "${x: -3}" == ".sh" ]] && fperms 0755 "/${x}"
-		# Use \x7fELF header to separate ELF executables and libraries
-		[[ -f ${x} && $(od -t x1 -N 4 "${x}") == *"7f 45 4c 46"* ]] && fperms 0755 "/${x}"
-	done
-	popd || die
+
 }
