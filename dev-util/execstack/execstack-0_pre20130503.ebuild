@@ -14,14 +14,14 @@ KEYWORDS="~amd64"
 
 src_prepare() {
 	default
-	#修复 libelf 检测
-	sed -i ' s/#include <string.h>/&\n#include <unistd.h>/ ' m4/libelf.m4 || die
-	eautoreconf -ri
+	# fix libelf detection
+	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4 || die
+	autoreconf -fi || die
 }
 
 src_compile() {
 	cd src
-	emake execstack
+	make execstack
 }
 
 src_install() {
