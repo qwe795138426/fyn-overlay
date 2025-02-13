@@ -6,7 +6,7 @@ EAPI=8
 DESCRIPTION="set the executable stack flag of ELF binaries and libraries"
 HOMEPAGE="https://people.redhat.com/jakub/prelink"
 SRC_URI="https://people.redhat.com/jakub/prelink/prelink-20130503.tar.bz2"
-
+RESTRICT="nostrip"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64"
