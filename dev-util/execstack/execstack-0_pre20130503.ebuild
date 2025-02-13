@@ -15,6 +15,8 @@ KEYWORDS="~amd64"
 
 src_prepare() {
 	default
+	# fix libelf detection
+	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4 || die
 	eautoreconf
 }
 
