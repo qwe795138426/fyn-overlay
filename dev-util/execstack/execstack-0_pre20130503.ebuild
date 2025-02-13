@@ -6,7 +6,6 @@ EAPI=8
 DESCRIPTION="set the executable stack flag of ELF binaries and libraries"
 HOMEPAGE="https://people.redhat.com/jakub/prelink"
 SRC_URI="https://people.redhat.com/jakub/prelink/prelink-20130503.tar.bz2"
-PATCHES=patches/libelf-0.7.0.patch
 S="${WORKDIR}"/prelink
 
 LICENSE="GPL-1+"
@@ -17,18 +16,14 @@ src_prepare() {
 	default
 	# fix libelf detection
 	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4 || die
-	eautoreconf
+	autoreconf -fi || die
 }
 
 src_compile() {
-	cd prelink
-	# fix libelf detection
-	sed -i 's/#include <string.h>/&\n#include <unistd.h>/' m4/libelf.m4 || die
-	autoreconf -fi || die
 	cd src
 	make execstack || die
 }
 
 src_install() {
-	dobin prelink/src/execstack
+	dobin src/execstack
 }
