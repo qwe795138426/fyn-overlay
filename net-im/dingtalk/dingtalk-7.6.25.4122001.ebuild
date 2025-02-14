@@ -8,7 +8,7 @@ inherit desktop unpacker xdg
 
 DESCRIPTION="Communication platform that supports video and audio conferencing"
 HOMEPAGE="https://gov.dingtalk.com"
-SRC_URI="https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.${PN}_${PV}_amd64.deb"
+SRC_URI="https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/0211/com.alibabainc.${PN}_${PV}_amd64.deb"
 
 S=${WORKDIR}
 
@@ -45,12 +45,6 @@ BDEPEND="
 
 QA_PREBUILT="*"
 
-src_configure() {
-	MY_VERSION=$(cat "${S}"/opt/apps/"${MY_PGK_NAME}"/files/version)
-	# Fix  */dingtalk_dll.so: cannot enable executable stack as shared object requires: Invalid argument
-	execstack -c "${WORKDIR}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
-}
-
 src_install() {
 	# Install scalable icon
 	doicon -s scalable "${FILESDIR}"/dingtalk.svg
@@ -67,6 +61,9 @@ src_install() {
 	rm -f "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/libcurl.so* || die
 	# use system freetype, fix undefined symbol: FT_Get_Color_Glyph_Layer
 	rm -rf "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/libfreetype.so* || die
+
+	# Fix  */dingtalk_dll.so: cannot enable executable stack as shared object requires: Invalid argument
+	execstack -c "${WORKDIR}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
 
 	# Set RPATH for preserve-libs handling
 	pushd "${S}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}" || die
