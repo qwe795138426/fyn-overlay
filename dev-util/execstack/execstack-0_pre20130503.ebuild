@@ -23,7 +23,7 @@ src_prepare() {
 
 src_compile() {
 	cd src
-	emake execstack
+	emake execstack || die
 }
 
 src_install() {

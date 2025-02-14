@@ -10,6 +10,8 @@ DESCRIPTION="Communication platform that supports video and audio conferencing"
 HOMEPAGE="https://gov.dingtalk.com"
 SRC_URI="https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.${PN}_${PV}_amd64.deb"
 
+S=${WORKDIR}
+
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64"
@@ -17,6 +19,7 @@ KEYWORDS="-* ~amd64"
 RESTRICT="strip mirror bindist"
 
 RDEPEND="
+	dev-libs/wayland
 	dev-libs/libthai
 	dev-qt/qtgui
 	media-libs/tiff-compat:4
@@ -24,7 +27,7 @@ RDEPEND="
 	media-video/rtmpdump
 	net-misc/curl
 	net-nds/openldap
-	sys-libs/glibc
+	virtual/libc
 	sys-libs/zlib
 	sys-process/procps
 	x11-libs/gtk+:2
@@ -40,14 +43,12 @@ BDEPEND="
 	dev-util/execstack
 "
 
-S=${WORKDIR}
-
 QA_PREBUILT="*"
 
 src_configure() {
 	MY_VERSION=$(cat "${S}"/opt/apps/"${MY_PGK_NAME}"/files/version)
-	# Fix the issue of not being able to start after updating
-	execstack -c ${WORKDIR}/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
+	# Fix  */dingtalk_dll.so: cannot enable executable stack as shared object requires: Invalid argument
+	execstack -c "${WORKDIR}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
 }
 
 src_install() {

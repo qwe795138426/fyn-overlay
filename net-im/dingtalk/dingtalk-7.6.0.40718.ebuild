@@ -10,6 +10,8 @@ DESCRIPTION="Communication platform that supports video and audio conferencing"
 HOMEPAGE="https://gov.dingtalk.com"
 SRC_URI="https://dtapp-pub.dingtalk.com/dingtalk-desktop/xc_dingtalk_update/linux_deb/Release/com.alibabainc.${PN}_${PV}_amd64.deb"
 
+S=${WORKDIR}
+
 LICENSE="all-rights-reserved"
 SLOT="0"
 KEYWORDS="-* ~amd64"
@@ -35,11 +37,18 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
-BDEPEND="dev-util/patchelf"
-
-S=${WORKDIR}
+BDEPEND="
+	dev-util/patchelf
+	dev-util/execstack
+"
 
 QA_PREBUILT="*"
+
+src_configure() {
+	MY_VERSION=$(cat "${S}"/opt/apps/"${MY_PGK_NAME}"/files/version)
+	# Fix  */dingtalk_dll.so: cannot enable executable stack as shared object requires: Invalid argument
+	execstack -c "${WORKDIR}"/opt/apps/"${MY_PGK_NAME}"/files/"${MY_VERSION}"/{dingtalk_dll,libconference_new}.so || die
+}
 
 src_install() {
 	# Install scalable icon
