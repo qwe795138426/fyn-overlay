@@ -18,11 +18,6 @@ LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ~arm64 ~riscv"
 
-PATCHES=(
-	"${FILESDIR}/pipenv-2023.9.8-inject-system-packages.patch"
-	"${FILESDIR}/pipenv-2023.9.8-append-always-install-to-pip-extra-args.patch"
-)
-
 RDEPEND="
 	dev-python/click[${PYTHON_USEDEP}]
 	dev-python/click-didyoumean[${PYTHON_USEDEP}]
@@ -96,14 +91,6 @@ src_prepare() {
 		xargs --max-procs="${jobs}" --null \
 		sed --in-place \
 			-e "s/from pipenv\.vendor import plette, toml, tomlkit, vistir/from pipenv\.vendor import plette, toml, vistir\\nimport tomlkit/g"
-
-	# remove python ruaml yaml
-	sed --in-place -e \
-		"s/from pipenv\.vendor\.ruamel\.yaml import YAML/from ruamel\.yaml import YAML/g" \
-		pipenv/patched/safety/util.py || die "Failed sed in ruaml-yaml"
-	sed --in-place -e \
-		"s/from pipenv\.vendor\.ruamel\.yaml\.error import MarkedYAMLError/from ruamel\.yaml\.error import MarkedYAMLError/g" \
-		pipenv/patched/safety/util.py || die "Failed sed in ruamel-yaml"
 
 	rm -vR pipenv/vendor/ruamel || die "Failed removing ruamel-yaml from vendor"
 
