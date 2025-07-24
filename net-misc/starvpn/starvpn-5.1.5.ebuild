@@ -33,7 +33,7 @@ src_install() {
 	dodir /opt/stars
 	chmod -R 754 usr/local/lib/stars
 	cp -a usr/local/lib/stars/* "${ED}"/opt/stars || die
-	dosym usr/local/lib/stars/stars /usr/bin
+	dosym usr/local/lib/stars/stars /usr/bin/stars
 	
 }
 
