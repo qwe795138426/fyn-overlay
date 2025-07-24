@@ -31,8 +31,10 @@ src_unpack() {
 
 src_install() {
 	dodir /usr
+	chmod -R 754 usr/local/lib/stars
 	cp -a usr/* "${ED}"/usr || die
 	dobin usr/local/lib/stars/stars
+	
 }
 
 
