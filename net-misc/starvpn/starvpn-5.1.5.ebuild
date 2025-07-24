@@ -30,10 +30,10 @@ src_unpack() {
 }
 
 src_install() {
-	dodir /usr
+	dodir /opt/stars
 	chmod -R 754 usr/local/lib/stars
-	cp -a usr/* "${ED}"/usr || die
-	dobin usr/local/lib/stars/stars
+	cp -a usr/local/lib/stars/* "${ED}"/opt/stars || die
+	dobin /opt/stars/stars
 	
 }
 
